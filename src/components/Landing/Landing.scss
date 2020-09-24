@@ -1,0 +1,146 @@
+@import '../../styles/variables.scss';
+
+.landing {
+  min-height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  padding: 0 5em;
+  display: flex;
+  align-items: center;
+
+  @media ($screen_tablet) {
+    flex-direction: column;
+    padding: 2em 5em;
+    justify-content: center;
+  }
+}
+
+.landing__main {
+  padding: 10px 90px;
+  @media ($screen_tablet) {
+    padding: 0;
+  }
+}
+
+.landing_cover {
+  height: 300px;
+  width: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.landing_detail {
+  height: 300px;
+  margin-right: 16px;
+  color: #fff;
+  width: 400px;
+
+  @media ($screen_tablet) {
+    width: 300px;
+    text-align: center;
+    margin: 16px 0 0;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Righteous', sans-serif;
+    font-size: 35px;
+    color: #fff;
+  }
+  h2 {
+    font-size: 25px;
+    color: #fff;
+  }
+  h3 {
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: baseline;
+    @media ($screen_tablet) {
+      align-items: center;
+    }
+  }
+}
+
+.landing_detail__information__number {
+  margin: 0 5px 0 3px;
+}
+
+.landing_detail__information__biography__more {
+  color: #fff;
+  font-size: 18px;
+}
+
+.landing_tracklist {
+  border-bottom: 1px solid #000;
+}
+
+.landing_tracklist__item {
+  height: 100px;
+  background-color: aqua;
+}
+
+.landing_tracklist__item {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.landing_tracklist__item__cover {
+  width: 70px;
+  border-radius: 10px;
+}
+
+.landing_tracklist__item__info {
+  margin-right: 10px;
+  h4 {
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    margin: 0;
+  }
+  h5 {
+    font-size: 16px;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+  }
+}
+
+.landing_Albums {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+
+.landing_Albums__cover {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.landing_Albums__info {
+  width: 100%;
+  h3 {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.landing_Albums__info_eng {
+  font-family: 'Quicksand', sans-serif;
+  margin-left: 5px;
+}
+
+.landing_Albums__info_fa {
+  font-weight: 300;
+  margin-right: 5px;
+}

@@ -1,0 +1,140 @@
+@import '../../styles/variables.scss';
+
+/*=================== SideBar =================== */
+
+:global {
+  .ant-layout.site-layout {
+    z-index: 1;
+    @media ($screen_tablet) {
+      margin: 0 !important;
+    }
+  }
+  .ant-menu-item {
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+  .anticon-ellipsis {
+    @media ($screen-sm-min) {
+      display: none;
+    }
+    font-size: 25px;
+  }
+
+  .ant-layout-sider-children {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+  }
+
+  .ant-menu {
+    background-color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: all ease 0.5s;
+  }
+
+  .ant-menu-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &::after {
+      left: auto !important;
+      right: 0 !important;
+    }
+  }
+
+  .ant-menu.ant-menu-rtl {
+    direction: ltr;
+  }
+
+  .ant-layout-sider-trigger {
+    transition: all ease 0.5s;
+  }
+}
+
+.logo {
+  width: 5em;
+  height: 5em;
+  user-select: none;
+}
+
+.sidebar {
+  transition: all ease 0.7s;
+  @media ($screen_tablet) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate3d(-100vw, 0, 0);
+    min-width: 0 !important;
+    width: 0 !important;
+    &.sidebar_open {
+      transform: translate3d(0vw, 0, 0);
+      width: 100vw !important;
+      min-width: 100vw !important;
+      height: 100vw !important;
+      :global {
+        .ant-layout-sider-children,
+        .ant-layout-sider-trigger {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+/*=================== End/SideBar =================== */
+
+/*=================== Header =================== */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0 1.5em !important;
+}
+
+.header_handwriter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+
+.headerHandwrite {
+  width: 9em;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+:global {
+  .ant-divider {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+.header_signBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+}

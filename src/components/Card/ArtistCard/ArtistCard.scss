@@ -1,0 +1,38 @@
+.Artist {
+  width: 200px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ArtistCover {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  overflow: hidden;
+
+  &:hover {
+    .Artist_overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.Artist_overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.438);
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+
+.ArtistName {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 1.15em;
+}

@@ -1,0 +1,54 @@
+:global {
+  .ant-carousel .slick-prev,
+  .ant-carousel .slick-next {
+    position: absolute;
+    display: block;
+    padding: 0;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: transparent;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    font-size: 0;
+    opacity: 1;
+    z-index: 1;
+    margin-top: -25px;
+    top: calc(50% + 10px);
+    font-family: 'icomoon';
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 1;
+
+      &::before {
+        color: rgb(14, 38, 64);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .ant-carousel .slick-prev {
+    top: 50%;
+    left: 0;
+    right: auto;
+    transform: rotate(180deg);
+  }
+
+  .ant-carousel .slick-next {
+    top: 50%;
+    right: 0;
+    left: auto;
+  }
+
+  .ant-carousel .slick-prev::before,
+  .ant-carousel .slick-next::before {
+    content: '\27A4';
+    font-size: 30px;
+    color: #000;
+  }
+}
