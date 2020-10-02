@@ -82,7 +82,12 @@
 
 .landing_tracklist__item {
   height: 100px;
-  background-color: aqua;
+  background-color: #f7f7f7;
+  transition: all ease 0.5s;
+  cursor: pointer;
+  &:hover {
+    background-color: #c7c5c5;
+  }
 }
 
 .landing_tracklist__item {

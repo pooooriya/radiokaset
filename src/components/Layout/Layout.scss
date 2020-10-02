@@ -4,6 +4,7 @@
 
 :global {
   .ant-layout.site-layout {
+    position: relative;
     z-index: 1;
     @media ($screen_tablet) {
       margin: 0 !important;
@@ -95,6 +96,7 @@
 /*=================== Header =================== */
 
 .header {
+  direction: ltr;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
