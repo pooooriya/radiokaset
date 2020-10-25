@@ -40,7 +40,7 @@ const MasterLayout = (props) => {
     <ConfigProvider locale={faIR}>
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
-          collapsed={collapse}
+          collapsed={true}
           onCollapse={onCollapse}
           collapsible
           theme="light"
