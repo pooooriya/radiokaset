@@ -5,7 +5,6 @@ import { appContext } from '@/providers/App';
 
 const Player = () => {
   const { playlist, currentIndex } = useContext(appContext);
-  console.log(playlist, currentIndex);
   return (
     <ReactJkMusicPlayer
       defaultPosition={{ right: '30px', bottom: '30px' }}

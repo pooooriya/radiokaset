@@ -21,7 +21,7 @@ import {
   IdcardOutlined,
   UserAddOutlined,
 } from '@ant-design/icons';
-import { useContext } from 'react';
+import { useState } from 'react';
 import { appContext } from '../../providers/App';
 import s from './Layout.scss';
 import cx from 'classnames';
@@ -31,18 +31,17 @@ import faIR from 'antd/lib/locale-provider/fa_IR';
 const { Header, Sider } = Layout;
 
 const MasterLayout = (props) => {
-  const { collapse, setCollapse } = useContext(appContext);
+  const [collapse, setCollapse] = useState(true);
   const onCollapse = () => {
     setCollapse(!collapse);
   };
-
   return (
     <ConfigProvider locale={faIR}>
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
-          collapsed={true}
-          onCollapse={onCollapse}
           collapsible
+          collapsed={collapse}
+          onCollapse={onCollapse}
           theme="light"
           className={cx(s.sidebar, !collapse && s.sidebar_open)}
           style={{
