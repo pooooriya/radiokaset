@@ -12,18 +12,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Roboto:wght@400;500&display=swap"
-            rel="stylesheet"
-          />
-          <script
-            src="https://kit.fontawesome.com/0837bda0a1.js"
-            crossorigin="anonymous"
-          />
+          <meta name="robots" content="noindex nofollow" />
           {/* <link rel="manifest" href="/manifest.json" /> */}
         </Head>
         <body>
