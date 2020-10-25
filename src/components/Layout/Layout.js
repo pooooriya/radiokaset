@@ -42,6 +42,7 @@ const MasterLayout = (props) => {
         <Sider
           collapsed={collapse}
           onCollapse={onCollapse}
+          collapsible
           theme="light"
           className={cx(s.sidebar, !collapse && s.sidebar_open)}
           style={{
