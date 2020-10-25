@@ -9,16 +9,20 @@ export const appContext = createContext({
   setUserID: () => {},
   userInfo: null,
   setUserInfo: () => {},
-  doctorInfo: null,
-  setDoctorInfo: () => {},
+  playlist: null,
+  setPLaylist: () => {},
   role: null,
   setRole: () => {},
   token: null,
   setToken: () => {},
   collapse: false,
   setCollapse: () => {},
+  isPLaying: false,
+  setIsPLaying: () => {},
   notifications: {},
   setNotifications: () => {},
+  currentIndex: 0,
+  setCurrentIndex: () => {},
 });
 
 export const AppProvider = (props) => {
@@ -26,10 +30,12 @@ export const AppProvider = (props) => {
   const [userID, setUserID] = useState(props.userID);
   const [token, setToken] = useState(props.token);
   const [userInfo, setUserInfo] = useState(props.userInfo);
-  const [doctorInfo, setDcotorInfo] = useState(props.doctorInfo);
+  const [playlist, setPLaylist] = useState([]);
+  const [isPLaying, setIsPLaying] = useState(false);
   const [role, setRole] = useState(props.role);
   const [collapse, setCollapse] = useState(props.collapse);
   const [notifications, setNotifications] = useState(props.notifications);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -69,14 +75,18 @@ export const AppProvider = (props) => {
         setToken,
         userInfo,
         setUserInfo,
-        doctorInfo,
-        setDcotorInfo,
+        playlist,
+        setPLaylist,
         role,
         setRole,
         collapse,
         setCollapse,
+        isPLaying,
+        setIsPLaying,
         notifications,
         setNotifications,
+        currentIndex,
+        setCurrentIndex,
       }}
     >
       {props.children}

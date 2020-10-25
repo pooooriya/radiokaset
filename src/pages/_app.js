@@ -6,6 +6,7 @@ import NProgress from 'nprogress';
 import MobileDetect from 'mobile-detect';
 import { SizesProvider } from 'react-sizes';
 import { ConfigProvider, notification } from 'antd';
+import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { parseCookies, destroyCookie } from 'nookies';
 import faIR from 'antd/lib/locale-provider/fa_IR';
@@ -14,6 +15,11 @@ import { isJson } from '../madules/index';
 import 'antd/dist/antd.less';
 import '@/styles/font.less';
 import '@/styles/global.less';
+
+const DynamicComponentWithNoSSR = dynamic(
+  () => import('@/components/Player/Player'),
+  { ssr: false }
+);
 
 function MyApp({ Component, pageProps, data }) {
   // Config Axios
@@ -64,7 +70,6 @@ function MyApp({ Component, pageProps, data }) {
       <AppProvider
         authenticated={data.authenticated}
         userInfo={data.userData}
-        doctorInfo={data.doctorInfo}
         userID={data.userID}
         role={data.role}
         token={data.token}
@@ -72,6 +77,7 @@ function MyApp({ Component, pageProps, data }) {
       >
         <SizesProvider config={data.sizes}>
           <Component {...pageProps} />
+          <DynamicComponentWithNoSSR />
         </SizesProvider>
       </AppProvider>
     </>
@@ -85,7 +91,6 @@ MyApp.getInitialProps = async (appContext) => {
   let token = null;
   let role = null;
   let userData = null;
-  let doctorInfo = null;
   let collapse = false;
   let sizes = {
     fallbackWidth: 1280,
@@ -97,7 +102,6 @@ MyApp.getInitialProps = async (appContext) => {
     authenticated = !!cookies.token;
     token = cookies.token || null;
     userData = isJson(cookies.user) ? JSON.parse(cookies.user) : null;
-    doctorInfo = isJson(cookies.doctor) ? JSON.parse(cookies.doctor) : null;
     role = userData?.role?.name?.toLowerCase() || null;
     userID = userData?.id || null;
     collapse = isJson(cookies.collapse) ? JSON.parse(cookies.collapse) : false;
@@ -127,7 +131,6 @@ MyApp.getInitialProps = async (appContext) => {
       token,
       role,
       userData,
-      doctorInfo,
       collapse,
     },
   };

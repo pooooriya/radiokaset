@@ -1,25 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import s from './Player.scss';
-import {
-  BackwardOutlined,
-  CaretRightOutlined,
-  ForwardOutlined,
-} from '@ant-design/icons';
-import { Slider } from 'antd';
+import { useContext } from 'react';
+import ReactJkMusicPlayer from 'react-jinke-music-player';
+import 'react-jinke-music-player/es/styles/index.less';
+import { appContext } from '@/providers/App';
 
-const Player = (props) => {
+const Player = () => {
+  const { playlist, currentIndex } = useContext(appContext);
+  console.log(playlist, currentIndex);
   return (
-    <div className={s.player}>
-      <div className={s.actions}>
-        <ForwardOutlined />
-        <CaretRightOutlined />
-        <BackwardOutlined />
-      </div>
-    </div>
+    <ReactJkMusicPlayer
+      defaultPosition={{ right: '30px', bottom: '30px' }}
+      showMediaSession
+      audioLists={playlist}
+      showLyric
+      autoPlayInitLoadPlayList
+      playIndex={currentIndex}
+    />
   );
 };
-
-Player.propTypes = {};
 
 export default Player;

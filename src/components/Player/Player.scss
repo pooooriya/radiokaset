@@ -2,7 +2,7 @@
   height: 64px;
   width: 100%;
   margin-left: 80px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   background: rgb(180, 180, 180);
@@ -11,6 +11,8 @@
   align-items: center;
   font-size: 30px;
   padding: 0 20px;
+  justify-content: space-between;
+  z-index: 100;
 }
 
 .actions {
@@ -22,19 +24,80 @@
   justify-content: space-between;
   position: relative;
   padding: 0 5px;
-  span:nth-child(2) {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #000;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.actions_play {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 16px;
+  width: 55%;
+  max-width: 100%;
+  span {
+    font-size: 13px;
   }
+}
+
+.musicInfo {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+}
+
+.musicInfo_cover {
+  width: 50px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.musicInfo_main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+}
+.musicInfo__name {
+  font-size: 14px;
+  width: 120px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.musicInfo__artist {
+  font-size: 11px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.slider_current {
+  margin-right: 10px;
+}
+
+.slider_total {
+  margin-left: 10px;
+}
+
+.options {
+  font-size: 18px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

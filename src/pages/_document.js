@@ -20,6 +20,10 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Roboto:wght@400;500&display=swap"
             rel="stylesheet"
           />
+          <script
+            src="https://kit.fontawesome.com/0837bda0a1.js"
+            crossorigin="anonymous"
+          />
           {/* <link rel="manifest" href="/manifest.json" /> */}
         </Head>
         <body>

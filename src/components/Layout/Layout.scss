@@ -78,8 +78,8 @@
     width: 0 !important;
     &.sidebar_open {
       transform: translate3d(0vw, 0, 0);
-      width: 100vw !important;
-      min-width: 100vw !important;
+      width: 50vw !important;
+      min-width: 50vw !important;
       height: 100vw !important;
       :global {
         .ant-layout-sider-children,
@@ -140,3 +140,5 @@
   align-items: center;
   font-size: 20px;
 }
+
+/*=================== End/header =================== */

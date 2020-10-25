@@ -1,0 +1,10 @@
+.button {
+  .buttonIcon {
+    margin-right: 25px;
+    vertical-align: middle;
+
+    &:only-child {
+      margin-right: 0;
+    }
+  }
+}
