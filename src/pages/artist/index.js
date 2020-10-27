@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '@/components/Layout/Layout';
-import Landing from '@/components/Landing/Landing';
+import ArtistHeader from '@/components/ArtistHeader/ArtistHeader';
+import MusicList from '@/components/MusicList/MusicList';
 
 const index = (props) => {
   return (
     <Layout>
-      <Landing />
+      <ArtistHeader />
+      <MusicList />
     </Layout>
   );
 };

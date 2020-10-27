@@ -1,0 +1,38 @@
+.music {
+  height: 50px;
+  width: 100%;
+  transition: all ease 0.5s;
+  border-bottom: 1px solid #c0c0c0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+
+  &:hover {
+    background-color: #1d1c1c;
+    .music_info {
+      h5 {
+        color: #fff;
+      }
+    }
+
+    .music_time {
+      color: #fff;
+    }
+  }
+}
+
+.music_info {
+  display: flex;
+  align-items: center;
+  h5 {
+    margin: 0;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+}
+
+.music_info_cover {
+  width: 30px;
+  border-radius: 50%;
+}

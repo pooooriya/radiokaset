@@ -13,7 +13,6 @@ const Card_Item = ({
   artist,
   lyrics,
   index,
-  isPLaying,
   onClick,
 }) => {
   /* 
@@ -37,11 +36,7 @@ const Card_Item = ({
         onClick={() => onClick(index)}
       >
         <div className={s.card_overlay}>
-          {isPLaying ? (
-            <i className="fa fa-pause" />
-          ) : (
-            <i className="fa fa-play" />
-          )}
+          <i className="fa fa-play" />
         </div>
       </div>
       <div className={s.card_detail}>

@@ -27,10 +27,12 @@ import s from './Layout.scss';
 import cx from 'classnames';
 import ReactImageFallback from 'react-image-fallback';
 import faIR from 'antd/lib/locale-provider/fa_IR';
+import withSizes from 'react-sizes';
 
 const { Header, Sider } = Layout;
 
 const MasterLayout = (props) => {
+  const { isTablet } = props;
   const [collapse, setCollapse] = useState(true);
   const onCollapse = () => {
     setCollapse(!collapse);
@@ -89,9 +91,12 @@ const MasterLayout = (props) => {
         <Layout
           className="site-layout"
           style={{
-            marginLeft: `${collapse ? ' 80px' : '200px'}`,
-            transition: 'all ease .7s',
+            margin: `${
+              isTablet ? '0' : collapse ? '0 0 0 80px' : '0 0 0 200px'
+            }`,
             minHeight: '100vh',
+            transition: 'all ease .2s',
+            backgroundColor: '#e4e4e4',
           }}
         >
           <Header
@@ -120,6 +125,10 @@ const MasterLayout = (props) => {
   );
 };
 
+const mapSizesToProps = ({ width }) => ({
+  isTablet: width < 768,
+});
+
 MasterLayout.propTypes = {};
 
-export default MasterLayout;
+export default withSizes(mapSizesToProps)(MasterLayout);

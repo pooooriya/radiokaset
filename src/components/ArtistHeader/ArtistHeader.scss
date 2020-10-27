@@ -1,0 +1,39 @@
+.artistHeader {
+  height: 350px;
+  background-repeat: no-repeat !important;
+  background-position: 50% 0 !important;
+  background-size: cover !important;
+  object-fit: cover;
+}
+
+.artistHeader_cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artistHeader_cover__inner {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.artistHeader_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 15px;
+  h1,
+  h2,
+  h4 {
+    margin: 0;
+    margin-bottom: 5px;
+    color: #f7f7f7;
+    text-align: center;
+  }
+
+  h4 {
+    margin-bottom: 15px;
+  }
+}

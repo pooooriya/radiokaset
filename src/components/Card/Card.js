@@ -6,8 +6,10 @@ import s from './Card.scss';
 import Flickity from 'react-flickity-component';
 import { appContext } from '../../providers/App';
 import { API_URL } from '@/root/env';
+import Link from '@/components/Link/Link';
+import ArtistCard from '@/components/Card/ArtistCard/ArtistCard';
 
-const Card = ({ title, res, subject }) => {
+const Card = ({ title, res, isArtist }) => {
   const audiolist = [];
   const { setPLaylist, setCurrentIndex } = useContext(appContext);
 
@@ -18,7 +20,7 @@ const Card = ({ title, res, subject }) => {
         singer: i?.artist?.persianTitle,
         cover: `${API_URL}${i?.cover?.url}`,
         musicSrc: `${API_URL}${i?.musicFile?.url}`,
-        lyric: i?.lyrics,
+        lyric: i?.lyrics ? i?.lyrics : '',
         key: index,
       });
     });
@@ -26,11 +28,24 @@ const Card = ({ title, res, subject }) => {
     setCurrentIndex(index);
   };
   const flickityOptions = {
-    initialIndex: 5,
+    wrapAround: true,
+    pauseAutoPlayOnHover: false,
+    dragThreshold: 10,
+    lazyLoad: true,
+    lazyLoad: 8,
   };
+
   return (
     <>
-      {title && <Divider orientation="right">{title}</Divider>}
+      {title && (
+        <Divider orientation="right">
+          <span className={s.divider_right}>{title}</span>
+          <span className={s.divider_left}>
+            <Link>مشاهده همه</Link>
+          </span>
+        </Divider>
+      )}
+
       <Flickity
         className={'carousel'} // default ''
         elementType={'div'} // default 'div'
@@ -39,18 +54,26 @@ const Card = ({ title, res, subject }) => {
         reloadOnUpdate // default false
         static // default false
       >
-        {res?.musics.map((i, index) => (
-          <CardItem
-            persianTitle={i.persianTitle}
-            englishTitle={i.persianTitle}
-            cover={i.cover}
-            file={i.musicFile}
-            artist={i.artist}
-            lyrics={i.lyrics}
-            index={index}
-            onClick={addToPlayList}
-          />
-        ))}
+        {!isArtist
+          ? res?.musics.map((i, index) => (
+              <CardItem
+                persianTitle={i.persianTitle}
+                englishTitle={i.persianTitle}
+                cover={i.cover}
+                file={i.musicFile}
+                artist={i.artist}
+                lyrics={i.lyrics}
+                index={index}
+                onClick={addToPlayList}
+              />
+            ))
+          : res?.artists.map((i) => (
+              <ArtistCard
+                persianTitle={i.persianTitle}
+                englishTitle={i.englishTitle}
+                cover={i.cover}
+              />
+            ))}
       </Flickity>
     </>
   );

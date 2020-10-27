@@ -1,14 +1,15 @@
 .Artist {
-  width: 200px;
-  height: 220px;
+  width: 150px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .ArtistCover {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
