@@ -9,9 +9,9 @@ if (env === 'production') {
   siteUrl = 'https://cassettify.ir/';
   adminUrl = 'https://api.cassettify.com/admin';
 } else if (env === 'development') {
-  apiUrl = 'https://api-dev.cassettify.ir';
-  siteUrl = 'https://dev.cassettify.ir/';
-  adminUrl = 'https://dev.cassettify.ir/admin';
+  apiUrl = 'https://api.cassettify.ir';
+  siteUrl = 'https://cassettify.ir/';
+  adminUrl = 'https://api.cassettify.com/admin';
 }
 
 // local host:

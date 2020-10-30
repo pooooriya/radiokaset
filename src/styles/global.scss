@@ -1,0 +1,314 @@
+html {
+  color: #1d1f24;
+  font-weight: 100;
+  font-size: 1em;
+  font-family: var(--fontFamily);
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: var(--fontFamily);
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: #fff !important;
+  background-image: none !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+:focus {
+  outline: none;
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * Print styles
+ * Inlined to avoid the additional HTTP request:
+ * http://www.phpied.com/delay-loading-your-print-css/
+ * ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+
+  a[href^='#']::after,
+  a[href^='javascript:']::after {
+    content: '';
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+/*=================== SideBar =================== */
+
+:global {
+  .ant-slider {
+    width: 90%;
+  }
+  .ant-layout.site-layout {
+    position: relative;
+    z-index: 1;
+    @media (max-width: 767px) {
+      margin: 0 !important;
+    }
+  }
+
+  .ant-menu-item {
+    width: 100%;
+    padding: 17px !important;
+    display: flex;
+    align-items: center;
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+  .anticon-ellipsis {
+    @media (min-width: 768px) {
+      display: none;
+    }
+    font-size: 25px;
+  }
+
+  .ant-layout-sider-children {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+  }
+
+  .ant-menu {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ant-menu-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &::after {
+      left: auto !important;
+      right: 0 !important;
+    }
+  }
+
+  .ant-menu.ant-menu-rtl {
+    direction: ltr;
+  }
+
+  .ant-table-tbody {
+    color: #f7f7f7;
+  }
+
+  // .ant-layout-sider-trigger {
+  //   transition: all ease 0.5s;
+  // }
+  // .ant-menu-item-selected {
+  //   background-color: #ed215d !important;
+  // }
+
+  .logo {
+    width: 100%;
+    height: 63px;
+    user-select: none;
+    background-color: #ffffff;
+  }
+
+  .sidebar {
+    @media (max-width: 768px) {
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translate3d(-100vw, 0, 0);
+      min-width: 0 !important;
+      width: 0 !important;
+      &.sidebar_open {
+        transform: translate3d(0vw, 0, 0);
+        width: 50vw !important;
+        min-width: 50vw !important;
+        height: 100vw !important;
+        :global {
+          .ant-layout-sider-children,
+          .ant-layout-sider-trigger {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+
+  /*=================== End/SideBar =================== */
+
+  /*=================== Header =================== */
+
+  .header {
+    direction: ltr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.267);
+    // filter: blur(8px);
+    padding: 0 1.5em !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all ease-in-out 0.5s;
+    color: #fff;
+  }
+
+  .header_fixed {
+    position: fixed;
+    top: 0;
+    background-color: #000;
+  }
+
+  .header_handwriter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    z-index: 2;
+  }
+
+  .headerHandwrite {
+    width: 9em;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .ant-divider {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .header_signBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  /*=================== End/header =================== */
+}

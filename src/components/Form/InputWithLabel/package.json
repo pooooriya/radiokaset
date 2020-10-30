@@ -1,0 +1,6 @@
+{
+  "name": "InputWithLabel",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./InputWithLabel.js"
+}

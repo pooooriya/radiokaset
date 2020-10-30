@@ -21,31 +21,42 @@ import {
   IdcardOutlined,
   UserAddOutlined,
 } from '@ant-design/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { appContext } from '../../providers/App';
-import s from './Layout.scss';
 import cx from 'classnames';
 import ReactImageFallback from 'react-image-fallback';
 import faIR from 'antd/lib/locale-provider/fa_IR';
 import withSizes from 'react-sizes';
+import { useScroll } from '@/modules/customHooks';
 
 const { Header, Sider } = Layout;
 
 const MasterLayout = (props) => {
+  const [isScrolled, setisScrolled] = useState(false);
+  const scroller = useScroll();
+
+  useEffect(() => {
+    if (scroller?.scrollY > 200 && scroller?.scrollDirection === 'up') {
+      setisScrolled(true);
+    } else {
+      setisScrolled(false);
+    }
+  }, [scroller?.scrollY]);
   const { isTablet } = props;
   const [collapse, setCollapse] = useState(true);
   const onCollapse = () => {
     setCollapse(!collapse);
   };
   return (
-    <ConfigProvider locale={faIR}>
+    <ConfigProvider locale={faIR} direction="rtl">
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
           collapsible
           collapsed={collapse}
           onCollapse={onCollapse}
-          theme="light"
-          className={cx(s.sidebar, !collapse && s.sidebar_open)}
+          trigger={null}
+          theme="dark"
+          className={cx('sidebar', !collapse && ' sidebar_open')}
           style={{
             position: 'fixed',
             left: '0',
@@ -56,12 +67,12 @@ const MasterLayout = (props) => {
           <ReactImageFallback
             src="/logo.svg"
             fallbackImage="/logo.svg"
-            className={s.logo}
+            className="logo"
           />
           <Menu
             defaultSelectedKeys={['1']}
             mode="inline"
-            theme="light"
+            theme="dark"
             direction="ltr"
           >
             <Menu.Item key="1" icon={<CustomerServiceOutlined />}>
@@ -95,26 +106,29 @@ const MasterLayout = (props) => {
               isTablet ? '0' : collapse ? '0 0 0 80px' : '0 0 0 200px'
             }`,
             minHeight: '100vh',
-            transition: 'all ease .2s',
-            backgroundColor: '#e4e4e4',
+            transition: 'all ease .3s',
           }}
         >
           <Header
             className="site-layout-background"
             style={{ padding: 0 }}
-            className={s.header}
+            className={cx('header', isScrolled && 'header_fixed')}
           >
-            <div className={s.header_collapesd}>
-              <EllipsisOutlined onClick={onCollapse} rotate={90} />
+            <div className="header_collapesd">
+              {onCollapse ? (
+                <MenuUnfoldOutlined onClick={onCollapse} />
+              ) : (
+                <MenuFoldOutlined onClick={onCollapse} />
+              )}
             </div>
-            <div className={s.header_handwriter}>
+            <div className="header_handwriter">
               <ReactImageFallback
-                fallbackImage="/handwrite.png"
+                fallbackImage="/handwriter.png"
                 src="/handwrite.png"
-                className={s.headerHandwrite}
+                className="headerHandwrite"
               />
             </div>
-            <div className={s.header_signBox}>
+            <div className="header_signBox">
               <SearchOutlined rotate={90} />
             </div>
           </Header>

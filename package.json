@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "antd": "generate-theme '/src/styles/custom-theme.less' '/src/styles/antd.css'",
+    "dev": "yarn antd && next",
     "start": "next start -p 3000",
-    "lint": "eslint src --ext .js,.ts,.tsx",
-    "lint:fix": "eslint --fix .",
+    "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "release": "git pull && yarn install && yarn build && pm2 restart front-release",
-    "master": "git pull && yarn install && yarn build && pm2 restart front-master",
-    "pm2": "NODE_ENV=production pm2 start --name='front-master' npm -- start"
+    "release": "git pull && yarn install && yarn build && pm2 restart client-release",
+    "master": "git pull && yarn install && yarn build && pm2 restart client-master",
+    "pm2": "NODE_ENV=production pm2 start --name='client-master' npm -- start"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
@@ -61,6 +63,7 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@emeks/antd-custom-theme-generator": "^0.1.6",
     "@next/bundle-analyzer": "^9.5.3",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",

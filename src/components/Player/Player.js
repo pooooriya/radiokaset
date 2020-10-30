@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
-import 'react-jinke-music-player/es/styles/index.less';
+import 'react-jinke-music-player/assets/index.module.css';
 import { appContext } from '@/providers/App';
 
 const Player = () => {

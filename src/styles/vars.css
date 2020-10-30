@@ -1,0 +1,34 @@
+:root {
+  --fontFamilyBase: iransans, 'Vazir', 'Segoe UI', 'HelveticaNeue-Light',
+    sans-serif;
+  --brandColor: #61dafb;
+
+  --layoutSiderBackground: rgb(14, 38, 64);
+  --menuBg: rgb(14, 38, 64);
+  --menuItemActiveBg: transparent;
+  --menuHighlightColor: rgb(42, 255, 207);
+  --menuItemColor: rgb(42, 255, 207);
+  --layoutBodyBackground: #f6f7f8;
+  --tableRowHoverBg: #fff;
+  --tableHeaderBg: #fff;
+  --primaryColor: rgb(12, 218, 172);
+  --primaryColorBgLight: rgba(12, 218, 172, 0.3);
+  --fontFamily: iransans, 'Vazir', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  --fontSizeBase: 13px;
+  --borderRadiusBase: 6px;
+  --borderRadiusSm: 3px;
+  --itemActiveBg: rgb(12, 218, 172);
+  --itemHoverBg: rgba(12, 218, 172, 0.3);
+  --borderColorBase: #eaeaea; /* base border outline a component */
+  --backgroundColorLight: #f7f8f9; /* background of header and selected item */
+  --backgroundColorBase: #f5f6f8; /* Default grey background color */
+
+  /* Input */
+  --inputHeight-base: 44px;
+  --inputHeightLg: 48px;
+  --inputHeightSm: 32px;
+  --inputPlaceholderColor: rgba(14, 38, 64, 1);
+
+  /* LINK */
+  --linkColor: rgb(14, 38, 64);
+}

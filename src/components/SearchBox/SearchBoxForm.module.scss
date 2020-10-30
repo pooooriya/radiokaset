@@ -1,0 +1,47 @@
+@use 'config';
+
+.form {
+  :global {
+    .ant-form-item {
+      margin-bottom: 11px;
+    }
+  }
+}
+
+.searchBoxLeft {
+  @media (min-width: 576px) {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: flex-end;
+    justify-content: flex-end;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+  }
+}
+
+.searchInput {
+  max-width: 400px;
+}
+
+.searchSelect {
+  width: 100%;
+
+  @media (min-width: 576px) {
+    margin-left: 10px;
+  }
+
+  @media (min-width: 992px) {
+    width: 200px;
+  }
+
+  :global {
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+      color: rgb(14, 38, 64);
+      font-size: 12px;
+      font-weight: 400;
+      background-color: rgb(247, 248, 249);
+      border-color: rgb(247, 248, 249);
+      box-shadow: none;
+    }
+  }
+}

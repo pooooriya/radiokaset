@@ -5,16 +5,21 @@ import Head from 'next/head';
 import NProgress from 'nprogress';
 import MobileDetect from 'mobile-detect';
 import { SizesProvider } from 'react-sizes';
-import { ConfigProvider, notification } from 'antd';
+import faIR from 'antd/lib/locale-provider/fa_IR';
+import { notification, ConfigProvider } from 'antd';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { parseCookies, destroyCookie } from 'nookies';
-import faIR from 'antd/lib/locale-provider/fa_IR';
+import * as gtag from '../lib/gtag';
+// import faIR from 'antd/lib/locale-provider/fa_IR';
 import { AppProvider } from '@/providers/App';
-import { isJson } from '../madules/index';
-import 'antd/dist/antd.less';
-import '@/styles/font.less';
-import '@/styles/global.less';
+import { isJson } from '../modules/index';
+import 'normalize.css/normalize.css';
+import 'nprogress/nprogress.css';
+import '@/styles/antd.css';
+import '@/styles/vars.css';
+import '@/styles/font.css';
+import '@/styles/global.scss';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('@/components/Player/Player'),
@@ -52,34 +57,45 @@ function MyApp({ Component, pageProps, data }) {
     );
     NProgress.configure({ showSpinner: false });
     Router.events.on('routeChangeStart', () => NProgress.start());
-    Router.events.on('routeChangeComplete', () => NProgress.done());
+    Router.events.on('routeChangeComplete', (url) => {
+      NProgress.done();
+      gtag.pageview(url);
+    });
     Router.events.on('routeChangeError', () => NProgress.done());
 
     return () => {
       Router.events.off('routeChangeStart', () => NProgress.start());
-      Router.events.off('routeChangeComplete', () => NProgress.done());
+      Router.events.off('routeChangeComplete', (url) => {
+        NProgress.done();
+        gtag.pageview(url);
+      });
       Router.events.off('routeChangeError', () => NProgress.done());
     };
   }, []);
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <AppProvider
-        authenticated={data.authenticated}
-        userInfo={data.userData}
-        userID={data.userID}
-        role={data.role}
-        token={data.token}
-        collapse={data.collapse}
-      >
-        <SizesProvider config={data.sizes}>
-          <Component {...pageProps} />
-          <DynamicComponentWithNoSSR />
-        </SizesProvider>
-      </AppProvider>
+      <ConfigProvider locale={faIR} direction="rtl">
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
+        <AppProvider
+          authenticated={data.authenticated}
+          userInfo={data.userData}
+          userID={data.userID}
+          role={data.role}
+          token={data.token}
+          collapse={data.collapse}
+        >
+          <SizesProvider config={data.sizes}>
+            <Component {...pageProps} />
+            <DynamicComponentWithNoSSR />
+          </SizesProvider>
+        </AppProvider>
+      </ConfigProvider>
     </>
   );
 }

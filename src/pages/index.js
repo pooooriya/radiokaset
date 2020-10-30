@@ -8,12 +8,13 @@ import { getLastMusic, getBestMusic, getLastMusicInSite } from '@/api/music';
 import { getLastArtistAdded } from '@/api/artist';
 import { getGenres } from '@/api/genre';
 import Genre from '../components/Genre/Genre';
+import Interduction from '@/components/Interduction/Interduction';
 
 const index = ({ newest, bestest, newinsite, lastArtistAdded, genres }) => {
   return (
     <Layout>
+      <Interduction />
       <Card title="جدیدترین کاست ها" res={newest} />
-      <Genre title="ژانر ها" res={genres} />
       <Card title="بهترین کاست ها" res={bestest} />
       <Card title="آخرین کاست ها" res={newinsite} />
       <Card title="جدیدترین آرتیست های کاست" res={lastArtistAdded} isArtist />

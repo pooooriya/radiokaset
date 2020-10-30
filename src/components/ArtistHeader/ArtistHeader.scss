@@ -1,9 +1,43 @@
-.artistHeader {
-  height: 350px;
+.ArtistHeader_info {
+  height: 100%;
+
+  Button {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+  h1,
+  h2,
+  h4 {
+    margin: 0;
+    color: #fff;
+  }
+  h1,
+  h2 {
+    font-weight: bold;
+  }
+  h1 {
+    font-family: 'Caveat', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+  }
+  h4 {
+    margin-bottom: 10px;
+  }
+}
+
+.ArtistHeader {
+  min-height: 50vh;
   background-repeat: no-repeat !important;
   background-position: 50% 0 !important;
   background-size: cover !important;
   object-fit: cover;
+  padding: 50px;
+
+  @media (max-width: 768px) {
+    padding: 70px 50px 30px;
+  }
 }
 
 .artistHeader_cover {
@@ -16,6 +50,12 @@
   width: 200px;
   height: auto;
   border-radius: 10px;
+}
+
+.ArtistHeader_cover {
+  width: 180px;
+  height: 200px;
+  border-radius: 5px;
 }
 
 .artistHeader_info {
@@ -36,4 +76,8 @@
   h4 {
     margin-bottom: 15px;
   }
+}
+
+.buttonIcon {
+  margin-left: 5px;
 }

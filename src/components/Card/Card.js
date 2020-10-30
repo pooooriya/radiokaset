@@ -55,17 +55,19 @@ const Card = ({ title, res, isArtist }) => {
         static // default false
       >
         {!isArtist
-          ? res?.musics.map((i, index) => (
-              <CardItem
-                persianTitle={i.persianTitle}
-                englishTitle={i.persianTitle}
-                cover={i.cover}
-                file={i.musicFile}
-                artist={i.artist}
-                lyrics={i.lyrics}
-                index={index}
-                onClick={addToPlayList}
-              />
+          ? res?.musics?.map((i, index) => (
+              <>
+                <CardItem
+                  persianTitle={i.persianTitle}
+                  englishTitle={i.persianTitle}
+                  cover={i.cover}
+                  file={i.musicFile}
+                  artist={i.artist}
+                  lyrics={i.lyrics}
+                  index={index}
+                  onClick={addToPlayList}
+                />
+              </>
             ))
           : res?.artists.map((i) => (
               <ArtistCard

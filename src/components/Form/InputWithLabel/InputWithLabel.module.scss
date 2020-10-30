@@ -1,0 +1,26 @@
+:global {
+  .ant-legacy-form-explain {
+    color: #f5222d;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .ant-drawer-body {
+    color: #3f3f3f;
+    font-size: 12px;
+    font-weight: 400;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding: 24px;
+    line-height: 1.5715;
+    word-wrap: break-word;
+  }
+
+  .ant-col .ant-legacy-form-item-label {
+    padding-bottom: 20px;
+  }
+}
+
+.inputLtr {
+  direction: ltr;
+}

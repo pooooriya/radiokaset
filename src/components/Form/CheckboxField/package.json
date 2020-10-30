@@ -1,0 +1,6 @@
+{
+  "name": "CheckboxField",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CheckboxField.js"
+}
