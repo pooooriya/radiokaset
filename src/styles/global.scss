@@ -1,5 +1,4 @@
 html {
-  color: #1d1f24;
   font-weight: 100;
   font-size: 1em;
   font-family: var(--fontFamily);
@@ -301,6 +300,11 @@ select:-webkit-autofill {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    position: relative;
+    margin-bottom: 25px !important;
+    span {
+      color: #fff;
+    }
   }
 
   .header_signBox {

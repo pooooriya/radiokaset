@@ -9,6 +9,7 @@ import {
   PlaySquareOutlined,
   PlusCircleTwoTone,
 } from '@ant-design/icons';
+import s from './MusicTable.scss';
 
 const MusicTable = (props) => {
   const [expandedRowKeys, setexpandedRowKeys] = useState([]);
@@ -145,7 +146,9 @@ const MusicTable = (props) => {
   ];
   return (
     <Row justify="center" align="middle">
-      <Divider orientation="right">بهترین های مهراد هیدن</Divider>
+      <Divider orientation="right" className={s.dvider}>
+        بهترین های مهراد هیدن
+      </Divider>
       <Col lg={20} xs={24}>
         <Table
           dataSource={dataSource}

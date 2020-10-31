@@ -203,9 +203,16 @@ https://flickity.metafizzy.co
 }
 
 .divider_left {
-  left: 25px;
+  left: 0;
+  top: 0;
+  background-color: #363636;
+  padding: 0 15px;
+  font-size: 15px;
   position: absolute;
+  z-index: 100;
+  display: flex;
+  align-items: center;
   a {
-    color: #c26d6d;
+    color: #ed215d;
   }
 }
