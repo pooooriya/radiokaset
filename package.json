@@ -11,9 +11,9 @@
     "lint": "eslint src --ext .js,.jsx",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "release": "git pull && yarn install && yarn build && pm2 restart client-release",
-    "master": "git pull && yarn install && yarn build && pm2 restart client-master",
-    "pm2": "NODE_ENV=production pm2 start --name='client-master' npm -- start"
+    "release": "git pull && yarn install && yarn build && pm2 restart front-master",
+    "master": "git pull && yarn install && yarn build && pm2 restart front-master",
+    "pm2": "NODE_ENV=production pm2 start --name='front-master' npm -- start"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
