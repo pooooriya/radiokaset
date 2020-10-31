@@ -69,7 +69,7 @@ const Card = ({ title, res, isArtist }) => {
                 />
               </>
             ))
-          : res?.artists.map((i) => (
+          : res?.artists?.map((i) => (
               <ArtistCard
                 persianTitle={i.persianTitle}
                 englishTitle={i.englishTitle}

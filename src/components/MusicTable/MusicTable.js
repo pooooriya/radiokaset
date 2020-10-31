@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Col, Row, Space, Table } from 'antd';
+import { Col, Divider, Row, Space, Table } from 'antd';
 import {
   AlignCenterOutlined,
   CaretRightOutlined,
@@ -11,7 +11,27 @@ import {
 } from '@ant-design/icons';
 
 const MusicTable = (props) => {
-  const [expendable, setExpendable] = useState(false);
+  const [expandedRowKeys, setexpandedRowKeys] = useState([]);
+
+  const onTableRowExpand = (expanded, record) => {
+    updateExpandedRowKeys({ record });
+  };
+
+  const updateExpandedRowKeys = ({ record }) => {
+    const rowKey = record.key;
+    const isExpanded = expandedRowKeys.find((key) => key === rowKey);
+    let expandedRowKey = [];
+    if (isExpanded) {
+      expandedRowKey = expandedRowKeys.reduce((acc, key) => {
+        if (key !== rowKey) acc.push(key);
+        return acc;
+      }, []);
+    } else {
+      expandedRowKey.push(rowKey);
+    }
+    setexpandedRowKeys(expandedRowKey);
+  };
+
   const dataSource = [
     {
       key: '1',
@@ -55,16 +75,18 @@ const MusicTable = (props) => {
     },
   ];
 
-  const columns = [
+  const columns = ({ updateExpandedRowKeys }) => [
     {
       title: 'تعداد پلی',
       dataIndex: '.',
       key: '.',
+      responsive: ['sm'],
     },
     {
       title: '#',
       dataIndex: 'key',
       key: 'key',
+      responsive: ['sm'],
     },
     {
       title: '',
@@ -82,6 +104,7 @@ const MusicTable = (props) => {
       dataIndex: 'album',
       key: 'album',
       align: 'center',
+      responsive: ['sm'],
     },
     {
       title: 'زمان',
@@ -92,19 +115,19 @@ const MusicTable = (props) => {
       title: 'تعداد پلی',
       dataIndex: 'visit',
       key: 'visit',
+      responsive: ['sm'],
     },
     {
       title: 'تکست آهنگ',
       dataIndex: 'lyrics',
       key: 'lyrics',
       align: 'center',
-      render: (text, record) => (
+      render: (text, record, index) => (
         <Space size="middle">
+          {/* {console.log(record, text, index)} */}
           <AlignCenterOutlined
             style={{ fontSize: '25px' }}
-            onClick={useCallback(() => setExpendable(!expendable), [
-              expendable,
-            ])}
+            onClick={(rowKey) => updateExpandedRowKeys({ record })}
           />
         </Space>
       ),
@@ -122,17 +145,23 @@ const MusicTable = (props) => {
   ];
   return (
     <Row justify="center" align="middle">
+      <Divider orientation="right">بهترین های مهراد هیدن</Divider>
       <Col lg={20} xs={24}>
         <Table
           dataSource={dataSource}
           columns={columns}
           pagination={false}
-          expandIconColumnIndex={8}
-          expandIconAsCell="false"
-          expandedRowRender={(record) => <p>{record.description}</p>}
+          expandedRowKeys={expandedRowKeys}
+          onExpand={onTableRowExpand}
+          expandIconColumnIndex={-1}
           expandable={{
-            expandIconAsCell: false,
+            expandedRowRender: (record) => (
+              <p style={{ margin: 0 }}>{record.lyrics}</p>
+            ),
           }}
+          columns={columns({
+            updateExpandedRowKeys: (e) => updateExpandedRowKeys(e),
+          })}
         />
       </Col>
     </Row>
