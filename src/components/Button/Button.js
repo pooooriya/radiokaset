@@ -8,9 +8,8 @@ class ButtonMain extends React.Component {
   render() {
     const { icon, className, children, ...rest } = this.props;
     return (
-      <Button {...rest} className={cx(className, s.button)}>
+      <Button {...rest} icon={icon} className={cx(className, s.button)}>
         {children}
-        {icon && <i className={cx(icon, s.buttonIcon)} />}
       </Button>
     );
   }

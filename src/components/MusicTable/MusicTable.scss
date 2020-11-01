@@ -1,3 +1,69 @@
 .dvider {
   align-items: center;
 }
+
+.musicCover {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.music_lyrics {
+  width: 100%;
+  transition: all ease 1s;
+  color: #000;
+
+  h1 {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  h5 {
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  h6 {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.album_cover {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.album_info {
+  h2,
+  h3,
+  h4 {
+    color: #f7f7f7;
+  }
+  h2 {
+    font-family: 'Caveat', sans-serif;
+  }
+}
+
+.album {
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}

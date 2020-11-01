@@ -17,8 +17,8 @@ export const appContext = createContext({
   setToken: () => {},
   collapse: false,
   setCollapse: () => {},
-  isPLaying: false,
-  setIsPLaying: () => {},
+  isPlaying: false,
+  setIsPlaying: () => {},
   notifications: {},
   setNotifications: () => {},
   currentIndex: 0,
@@ -31,11 +31,11 @@ export const AppProvider = (props) => {
   const [token, setToken] = useState(props.token);
   const [userInfo, setUserInfo] = useState(props.userInfo);
   const [playlist, setPLaylist] = useState([]);
-  const [isPLaying, setIsPLaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(props.isPlaying);
   const [role, setRole] = useState(props.role);
   const [collapse, setCollapse] = useState(props.collapse);
   const [notifications, setNotifications] = useState(props.notifications);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(props.currentIndex);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -81,8 +81,8 @@ export const AppProvider = (props) => {
         setRole,
         collapse,
         setCollapse,
-        isPLaying,
-        setIsPLaying,
+        isPlaying,
+        setIsPlaying,
         notifications,
         setNotifications,
         currentIndex,

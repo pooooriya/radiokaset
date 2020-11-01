@@ -76,3 +76,62 @@ export const getLastMusic = () => {
     `,
   });
 };
+
+export const getTopFiveMusicByArtist = (id) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      artists(where: { id: ${id} }) {
+        musics(sort: "view:DESC", limit: 10) {
+          persianTitle
+          englishTitle
+          view
+          cover{
+            url
+          }
+          musicLength
+          musicFile {
+            url
+          }
+          lyrics
+          album {
+            persianTitle
+            englishTitle
+          }
+        }
+      }
+    }
+    `,
+  });
+};
+
+export const getAllMusic = (id) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      artists(where: { id: ${id} }) {
+          musics {
+            persianTitle
+            englishTitle
+            lyrics
+            view
+            musicLength
+            album{
+              englishTitle
+              persianTitle
+            }
+            cover {
+              url
+            }
+            musicFile {
+              url
+            }
+          }
+        }
+    }
+    
+    `,
+  });
+};

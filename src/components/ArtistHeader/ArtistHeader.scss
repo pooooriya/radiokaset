@@ -60,9 +60,8 @@
 
 .artistHeader_info {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-content: stretch;
   padding: 0 15px;
   h1,
   h2,

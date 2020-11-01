@@ -34,7 +34,7 @@ export async function getServerSideProps() {
     bestest = await getBestMusic();
     newest = await getLastMusic();
     newinsite = await getLastMusicInSite();
-    lastArtistAdded = await getLastArtistAdded();
+    lastArtistAdded = await getLastArtistAdded(10);
   } catch (e) {
     throw new Error('some thing went wrong !!!');
   }

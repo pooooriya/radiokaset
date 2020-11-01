@@ -89,6 +89,9 @@ function MyApp({ Component, pageProps, data }) {
           role={data.role}
           token={data.token}
           collapse={data.collapse}
+          isPlaying={data.isPlaying}
+          playlist={data.playlist}
+          currentIndex={data.currentIndex}
         >
           <SizesProvider config={data.sizes}>
             <Component {...pageProps} />
@@ -103,6 +106,9 @@ function MyApp({ Component, pageProps, data }) {
 MyApp.getInitialProps = async (appContext) => {
   const { req } = appContext.ctx;
   let authenticated = false;
+  let currentIndex = 0;
+  let playlist = [];
+  let isPlaying = false;
   let userID = null;
   let token = null;
   let role = null;
@@ -148,6 +154,9 @@ MyApp.getInitialProps = async (appContext) => {
       role,
       userData,
       collapse,
+      currentIndex,
+      playlist,
+      isPlaying,
     },
   };
 };
