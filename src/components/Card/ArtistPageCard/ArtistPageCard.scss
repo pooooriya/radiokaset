@@ -1,0 +1,79 @@
+.artists {
+  height: 250px;
+  width: 200px;
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    .artists_cover_overlay {
+      opacity: 1;
+    }
+
+    .play_icon {
+      font-size: 50px;
+    }
+  }
+}
+
+.artists_cover {
+  position: absolute;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.artists_cover {
+  position: absolute;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.13),
+    rgba(0, 0, 0, 0.74)
+  );
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.artists_cover_inner {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.artists_cover_info {
+  padding-bottom: 10px;
+  h2,
+  h4 {
+    margin: 0;
+    text-align: center;
+  }
+  h2 {
+    font-family: 'Caveat', sans-serif;
+  }
+}
+
+.artists_cover_overlay {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.548),
+    rgba(0, 0, 0, 0.795)
+  );
+  transition: all ease 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play_icon {
+  font-size: 110px;
+  transition: all ease 0.5s;
+}

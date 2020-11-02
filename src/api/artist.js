@@ -5,7 +5,9 @@ export const getLastArtistAdded = (limit) => {
   const url = GRAPHQL();
   return axios.post(url, {
     query: `{
-        artists(sort:"published_at:DESC",${limit && `limit:${limit}`}){
+        artists(sort:"published_at:DESC"
+        ${limit && `limit:${limit}`}){
+           id
             persianTitle
             englishTitle
             cover{
@@ -34,5 +36,24 @@ export const getArtist = (id) => {
      }
 }
     }`,
+  });
+};
+
+export const getMore = (start, limit) => {
+  const url = GRAPHQL();
+  return axios.post(url, {
+    query: `{
+        artists(sort:"published_at:DESC"
+        ${start && `start:${start}`}
+        ${limit && `limit:${limit}`}
+        ){
+           id
+            persianTitle
+            englishTitle
+            cover{
+              url
+            }
+          }
+      }`,
   });
 };

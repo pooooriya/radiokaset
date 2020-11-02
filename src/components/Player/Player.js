@@ -1,12 +1,22 @@
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
 import 'react-jinke-music-player/assets/index.module.css';
 import { appContext } from '@/providers/App';
+import { visitMusic } from '@/api/music';
 
 const Player = () => {
-  const { playlist, currentIndex, setIsPlaying, setCurrentIndex } = useContext(
-    appContext
-  );
+  const {
+    playlist,
+    currentIndex,
+    setIsPlaying,
+    setCurrentIndex,
+    isPlaying,
+  } = useContext(appContext);
+  const [currentPlay, setCurrentPlay] = useState(null);
+
+  const visit = async (id) => {
+    return await visitMusic(id);
+  };
 
   return (
     <ReactJkMusicPlayer
@@ -24,7 +34,10 @@ const Player = () => {
           ? setCurrentIndex(currentIndex + 1)
           : setCurrentIndex(0);
       }}
-      onAudioPlay={() => setIsPlaying(true)}
+      onAudioPlay={(audioInfo) => {
+        setIsPlaying(true);
+        visit(audioInfo?.idi);
+      }}
       onAudioPause={() => setIsPlaying(false)}
     />
   );

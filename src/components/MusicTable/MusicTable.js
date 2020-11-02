@@ -39,6 +39,7 @@ const MusicTable = ({ data, title, album, subjects }) => {
           lyric: i?.lyrics ? i?.lyrics : '',
           key: index,
           table: subjects,
+          idi: i?.id,
         });
       });
       setPLaylist(audiolist);
@@ -55,6 +56,7 @@ const MusicTable = ({ data, title, album, subjects }) => {
             lyric: i?.lyrics ? i?.lyrics : '',
             key: index,
             table: subjects,
+            idi: i?.id,
           });
         });
         await setPLaylist(audiolist);
@@ -74,6 +76,7 @@ const MusicTable = ({ data, title, album, subjects }) => {
       cover: i?.cover?.url ? `${API_URL}${i?.cover.url}` : '/defaultavatar.jpg',
       lyrics: i?.lyrics ? i?.lyrics : 'تکستی برای این آهنگ یافت نشد',
       table: subjects,
+      idi: i?.id,
     });
   });
 

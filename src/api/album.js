@@ -24,6 +24,7 @@ export const getAlbumsByArtist = (id) => {
               url
             }
             musics {
+                id
                 persianTitle
                 englishTitle
                 lyrics
@@ -44,5 +45,45 @@ export const getAlbumsByArtist = (id) => {
         }
       }
       `,
+  });
+};
+
+export const getAlbums = (limit) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `
+    {
+      albums(sort:"published_at:DESC"
+      ${limit && `limit:${limit}`}
+       ){
+          id
+           persianTitle
+           englishTitle
+           cover{
+             url
+           }
+         }
+     }
+      `,
+  });
+};
+
+export const getMoreAlbum = (start, limit) => {
+  const url = GRAPHQL();
+  return axios.post(url, {
+    query: `{
+      albums(sort:"published_at:DESC"
+        ${start && `start:${start}`}
+        ${limit && `limit:${limit}`}
+        ){
+           id
+            persianTitle
+            englishTitle
+            cover{
+              url
+            }
+          }
+      }`,
   });
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GRAPHQL } from '@/constants/api';
+import { GRAPHQL, POST_VISIT_MUSIC } from '@/constants/api';
 
 export const getLastMusicInSite = () => {
   const url = GRAPHQL();
@@ -84,6 +84,7 @@ export const getTopFiveMusicByArtist = (id) => {
     query: `{
       artists(where: { id: ${id} }) {
         musics(sort: "view:DESC", limit: 10) {
+          id
           persianTitle
           englishTitle
           view
@@ -134,4 +135,9 @@ export const getAllMusic = (id) => {
     
     `,
   });
+};
+
+export const visitMusic = (id) => {
+  const url = POST_VISIT_MUSIC(id);
+  return axios.put(url);
 };
