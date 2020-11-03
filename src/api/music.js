@@ -137,6 +137,61 @@ export const getAllMusic = (id) => {
   });
 };
 
+export const getPodcastMusics = (limit) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort:"releasedDate:DESC" limit:${limit} where:{musicTyoe:"podcast"}){
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          artist{
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+       }
+    }
+    `,
+  });
+};
+
+export const getMorePodcast = (start, limit) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort:"releasedDate:DESC"  
+      ${start && `start:${start}`}
+      ${limit && `limit:${limit}`}
+       where:{musicTyoe:"podcast"}){
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          artist{
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+       }
+    }
+    `,
+  });
+};
+
 export const visitMusic = (id) => {
   const url = POST_VISIT_MUSIC(id);
   return axios.put(url);

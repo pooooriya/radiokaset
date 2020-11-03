@@ -1,6 +1,5 @@
 .artists {
   height: 250px;
-  width: 200px;
   overflow: hidden;
   position: relative;
   &:hover {
@@ -51,6 +50,7 @@
   h4 {
     margin: 0;
     text-align: center;
+    color: #fff;
   }
   h2 {
     font-family: 'Caveat', sans-serif;
@@ -76,4 +76,5 @@
 .play_icon {
   font-size: 110px;
   transition: all ease 0.5s;
+  color: #fff;
 }

@@ -1,29 +1,27 @@
 import React, { useEffect, useState, memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Layout from '@/components/Layout/Layout';
-import { getLastArtistAdded } from '@/api/artist';
 import InfiniteScroll from 'react-infinite-scroller';
 import ArtistPageCard from '../../components/Card/ArtistPageCard/ArtistPageCard';
 import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { getMoreAlbum, getAlbums } from '@/api/album';
-import { getMorePlaylist, getPlaylists } from '../../api/playlist';
+import { getPodcastMusics, getMorePodcast } from '@/api/music';
 
-const index = ({ playlists }) => {
+const index = ({ podcasts }) => {
   const [loadmore, setLoadmore] = useState(false);
   const [loading, setloading] = useState(true);
   const [start, setStart] = useState(20);
-  const [data, setData] = useState(playlists?.playlists);
+  const [data, setData] = useState(podcasts?.musics);
 
   useEffect(() => {
     if (loadmore) {
       const fetchMore = async () => {
-        await getMorePlaylist(start, 20).then((res) => {
+        await getMorePodcast(start, 20).then((res) => {
           setLoadmore(false);
           setStart(start + 20);
-          setData([...data, ...res?.data?.data?.playlists]);
-          if (res?.data?.data?.playlists.length < 20) {
+          setData([...data, ...res?.data?.data?.musics]);
+          if (res?.data?.data?.musics.length < 20) {
             setloading(false);
           }
         });
@@ -63,16 +61,17 @@ const index = ({ playlists }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  let playlists;
+  let podcasts;
 
   try {
-    playlists = await getPlaylists(20);
+    podcasts = await getPodcastMusics(20);
+    console.log(podcasts.data.data);
   } catch (e) {
     throw new Error('some thing went wrong !!!');
   }
   return {
     props: {
-      playlists: playlists?.data?.data || null,
+      podcasts: podcasts?.data?.data || null,
     },
   };
 }
