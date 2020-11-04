@@ -1,30 +1,29 @@
 import React, { useEffect, useState, memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Layout from '@/components/Layout/Layout';
-import { getLastArtistAdded } from '@/api/artist';
 import InfiniteScroll from 'react-infinite-scroller';
-import ArtistPageCard from '../../components/Card/ArtistPageCard/ArtistPageCard';
+import ArtistPageCard from '@/components/Card/ArtistPageCard/ArtistPageCard';
 import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { NextSeo } from 'next-seo';
-import { getMoreAlbum, getAlbums } from '@/api/album';
+import { getGenres, getMoreGenres } from '@/api/genre';
 
-const index = ({ albums }) => {
-  console.log(albums);
+const index = ({ genres }) => {
   const [loadmore, setLoadmore] = useState(false);
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(
+    genres?.genres.length < 20 ? false : true
+  );
   const [start, setStart] = useState(20);
-  const [data, setData] = useState(albums?.albums);
+  const [data, setData] = useState(genres?.genres);
 
   useEffect(() => {
     if (loadmore) {
       const fetchMore = async () => {
-        await getMoreAlbum(start, 20).then((res) => {
+        await getMoreGenres(start, 20).then((res) => {
           setLoadmore(false);
           setStart(start + 20);
-          setData([...data, ...res?.data?.data?.albums]);
-          if (res?.data?.data?.albums.length < 20) {
+          setData([...data, ...res?.data?.data?.genres]);
+          if (res?.data?.data?.genres.length < 20) {
             setloading(false);
           }
         });
@@ -35,10 +34,6 @@ const index = ({ albums }) => {
 
   return (
     <Layout>
-      <NextSeo
-        title="کاستیفای | آلبوم های خوانندگان"
-        description="جست و جو در بهترین آلبوم خوانندگان ایرانی و خارجی و پخش آنلاین موزیک "
-      />
       <InfiniteScroll
         pageStart={0}
         loadMore={() => setLoadmore(true)}
@@ -68,16 +63,17 @@ const index = ({ albums }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  let albums;
+  let genres;
 
   try {
-    albums = await getAlbums(20);
+    genres = await getGenres(20);
+    console.log(genres.data.data);
   } catch (e) {
     throw new Error('some thing went wrong !!!');
   }
   return {
     props: {
-      albums: albums?.data?.data || null,
+      genres: genres?.data?.data || null,
     },
   };
 }

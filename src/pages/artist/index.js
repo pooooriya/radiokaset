@@ -8,6 +8,7 @@ import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getMore } from '../../api/artist';
+import { NextSeo } from 'next-seo';
 
 const index = ({ artists }) => {
   const [loadmore, setLoadmore] = useState(false);
@@ -33,6 +34,10 @@ const index = ({ artists }) => {
 
   return (
     <Layout>
+      <NextSeo
+        title="کاستیفای | آرتیست ها"
+        description="شما میتوانید به آهنگ های خواننده مورد نظر خود گوشی بدهید و به فول آلبوم آن ها دسترسی داشته باشید و آن را دانلود کنید "
+      />
       <InfiniteScroll
         pageStart={0}
         loadMore={() => setLoadmore(true)}

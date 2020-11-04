@@ -1,47 +1,26 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
 import s from './CardItem.scss';
-import ReactImageFallback from 'react-image-fallback';
-import { appContext } from '@/providers/App';
+import Link from '@/components/Link/Link';
+import Button from '@/components/Button/Button';
 import { API_URL } from '@/root/env';
+import { FileTextOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import ReactImageFallback from 'react-image-fallback';
 
-const Card_Item = ({
-  persianTitle,
-  englishTitle,
-  cover,
-  file,
-  artist,
-  lyrics,
-  index,
-  onClick,
-}) => {
-  /* 
-  [
-          {
-            name: persianTitle,
-            singer: artist.persianTitle,
-            cover: `${API_URL}${cover?.url}`,
-            musicSrc: `${API_URL}${file?.url}`,
-            lyric: lyrics,
-          },
-        ]
-  
-  
-  */
+const Card_Item = ({ persianTitle, cover, artist }) => {
   return (
-    <div className={s.card}>
-      <div
-        className={s.card_cover}
-        style={{ backgroundImage: `url(${API_URL}${cover?.url})` }}
-        onClick={() => onClick(index)}
-      >
-        <div className={s.card_overlay}>
-          <i className="fa fa-play" />
+    <div className={s.artists}>
+      <ReactImageFallback
+        src={`${API_URL}${cover?.url}`}
+        className={s.artists_cover_inner}
+      />
+
+      <div className={s.artists_cover}>
+        <div className={s.artists_cover_overlay}>
+          <PlayCircleOutlined className={s.play_icon} />
         </div>
-      </div>
-      <div className={s.card_detail}>
-        <div className={s.card_detail__title}>{persianTitle}</div>
-        <div className={s.card_detail__artist}>{artist?.persianTitle}</div>
+        <div className={s.artists_cover_info}>
+          <h2>{artist?.persianTitle}</h2>
+          <h4>{persianTitle}</h4>
+        </div>
       </div>
     </div>
   );

@@ -1,22 +1,27 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
-import dynamic from 'next/dynamic';
-import Player from '@/components/Player/Player';
 import Card from '@/components/Card/Card';
-import ArtistCard from '@/components/Card/ArtistCard/ArtistCard';
 import { getLastMusic, getBestMusic, getLastMusicInSite } from '@/api/music';
 import { getLastArtistAdded } from '@/api/artist';
 import { getGenres } from '@/api/genre';
-import Genre from '../components/Genre/Genre';
+import { NextSeo } from 'next-seo';
 import Interduction from '@/components/Interduction/Interduction';
 
 const index = ({ newest, bestest, newinsite, lastArtistAdded, genres }) => {
   return (
     <Layout>
+      <NextSeo
+        title="کاستیفای | پخش آنلاین بهترین آهنگ های ایرانی و خارجی  "
+        description=" کاستیفای برترین استریم موزیک ایرانی و خارجی که میتوانید بی وقفه با آن به موسیقی گوش دهید و موزیک دلخواه خود را دانلود کنید"
+      />
       <Interduction />
-      <Card title="جدیدترین کاست ها" res={newest} />
-      <Card title="بهترین کاست ها" res={bestest} />
-      <Card title="آخرین کاست ها" res={newinsite} />
+      <Card title="جدیدترین کاست ها" res={newest} subject="latest-music" />
+      <Card title="بهترین کاست ها" res={bestest} subject="top-best-music" />
+      <Card
+        title="آخرین کاست های اضافه شده"
+        res={newinsite}
+        subject="latest-music-in-cassettify"
+      />
       <Card title="جدیدترین آرتیست های کاست" res={lastArtistAdded} isArtist />
       {/* <Card title="آخرین کاست ها" res={genres} /> */}
     </Layout>
@@ -30,7 +35,7 @@ export async function getServerSideProps() {
   let lastArtistAdded;
   let genres;
   try {
-    genres = await getGenres();
+    genres = await getGenres(10);
     bestest = await getBestMusic();
     newest = await getLastMusic();
     newinsite = await getLastMusicInSite();

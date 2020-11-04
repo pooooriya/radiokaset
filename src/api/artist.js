@@ -28,6 +28,10 @@ export const getArtist = (id) => {
       englishTitle
       socialAddress
       shortDescription
+      genre{
+        persianTittle
+           englishTitle
+         }
       background{
       url
       }

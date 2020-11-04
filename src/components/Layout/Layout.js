@@ -1,47 +1,30 @@
 import { Layout, Menu, Breadcrumb, ConfigProvider } from 'antd';
 import Link from 'next/link';
 import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
   UserOutlined,
   MenuUnfoldOutlined,
-  BarsOutlined,
-  HomeOutlined,
   SearchOutlined,
   CustomerServiceOutlined,
   ControlOutlined,
   SoundOutlined,
   CaretRightOutlined,
   ForwardOutlined,
-  KeyOutlined,
-  LoginOutlined,
-  EllipsisOutlined,
-  IdcardOutlined,
-  UserAddOutlined,
+  RightSquareOutlined,
+  ArrowRightOutlined,
+  CaretRightFilled,
+  RightOutlined,
+  LeftOutlined,
+  UnorderedListOutlined,
 } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
-import { appContext } from '../../providers/App';
+import { useState } from 'react';
 import cx from 'classnames';
 import ReactImageFallback from 'react-image-fallback';
 import faIR from 'antd/lib/locale-provider/fa_IR';
 import withSizes from 'react-sizes';
-import { useScroll } from '@/modules/customHooks';
 
 const { Header, Sider } = Layout;
 
 const MasterLayout = (props) => {
-  const [isScrolled, setisScrolled] = useState(false);
-  const scroller = useScroll();
-
-  useEffect(() => {
-    if (scroller?.scrollY > 200 && scroller?.scrollDirection === 'up') {
-      setisScrolled(true);
-    } else {
-      setisScrolled(false);
-    }
-  }, [scroller?.scrollY]);
   const { isTablet } = props;
   const [collapse, setCollapse] = useState(true);
   const onCollapse = () => {
@@ -64,11 +47,15 @@ const MasterLayout = (props) => {
             minHeight: '100vh',
           }}
         >
-          <ReactImageFallback
-            src="/logo.svg"
-            fallbackImage="/logo.svg"
-            className="logo"
-          />
+          <div className="logo-bar">
+            <ReactImageFallback
+              src="/logo.svg"
+              fallbackImage="/logo.svg"
+              className="logo"
+            />
+            <LeftOutlined onClick={onCollapse} style={{ color: '#fff' }} />
+          </div>
+
           <Menu
             defaultSelectedKeys={['1']}
             mode="inline"
@@ -91,12 +78,6 @@ const MasterLayout = (props) => {
             <Menu.Item key="5" icon={<CaretRightOutlined />}>
               <Link href="/album">آلبوم</Link>
             </Menu.Item>
-            <Menu.Item key="6" icon={<ForwardOutlined />}>
-              <Link href="/playlist">پلی لیست</Link>
-            </Menu.Item>
-            <Menu.Item key="7" icon={<SoundOutlined />}>
-              <Link href="/podcast"> پادکست</Link>
-            </Menu.Item>
           </Menu>
         </Sider>
         <Layout
@@ -112,14 +93,10 @@ const MasterLayout = (props) => {
           <Header
             className="site-layout-background"
             style={{ padding: 0 }}
-            className={cx('header', isScrolled && 'header_fixed')}
+            className="header"
           >
             <div className="header_collapesd">
-              {onCollapse ? (
-                <MenuUnfoldOutlined onClick={onCollapse} />
-              ) : (
-                <MenuFoldOutlined onClick={onCollapse} />
-              )}
+              <UnorderedListOutlined onClick={onCollapse} />
             </div>
             <div className="header_handwriter">
               <ReactImageFallback

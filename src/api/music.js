@@ -6,6 +6,7 @@ export const getLastMusicInSite = () => {
   return axios.post(url, {
     query: `{
         musics(sort:"published_at:DESC",limit:15){
+            id
             persianTitle
             englishTitle
             view
@@ -31,6 +32,7 @@ export const getBestMusic = () => {
   return axios.post(url, {
     query: `{
       musics(sort:"view:DESC",limit:15){
+          id
           persianTitle
           englishTitle
           view
@@ -57,6 +59,7 @@ export const getLastMusic = () => {
   return axios.post(url, {
     query: `{
       musics(sort:"releasedDate:DESC",limit:15){
+          id
           persianTitle
           englishTitle
           view
@@ -114,6 +117,7 @@ export const getAllMusic = (id) => {
     query: `{
       artists(where: { id: ${id} }) {
           musics {
+            id
             persianTitle
             englishTitle
             lyrics
@@ -143,6 +147,7 @@ export const getPodcastMusics = (limit) => {
   return axios.post(url, {
     query: `{
       musics(sort:"releasedDate:DESC" limit:${limit} where:{musicTyoe:"podcast"}){
+          id
           persianTitle
           englishTitle
           view
@@ -172,6 +177,88 @@ export const getMorePodcast = (start, limit) => {
       ${start && `start:${start}`}
       ${limit && `limit:${limit}`}
        where:{musicTyoe:"podcast"}){
+          id
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          artist{
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+       }
+    }
+    `,
+  });
+};
+
+export const getAllMusicByParams = () => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort:"releasedDate:DESC" limit:${limit} where:{musicTyoe:"podcast"}){
+          id
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          artist{
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+       }
+    }
+    `,
+  });
+};
+
+export const getLastestPodcast = (limit) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort:"published_at:DESC" limit:${limit} where:{musicTyoe:"podcast"}){
+          id
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          artist{
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+       }
+    }
+    `,
+  });
+};
+
+export const getTopBestPodcast = (limit) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort: "view:DESC" limit:${limit} where:{musicTyoe:"podcast"}){
+          id
           persianTitle
           englishTitle
           view
