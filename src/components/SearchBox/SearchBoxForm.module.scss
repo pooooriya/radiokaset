@@ -19,10 +19,6 @@
   }
 }
 
-.searchInput {
-  max-width: 400px;
-}
-
 .searchSelect {
   width: 100%;
 
@@ -44,4 +40,9 @@
       box-shadow: none;
     }
   }
+}
+
+.Button {
+  display: flex;
+  justify-content: center;
 }

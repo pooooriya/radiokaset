@@ -5,7 +5,7 @@ import {
   getLastestPodcast,
   getTopBestPodcast,
 } from '@/api/music';
-import Layout from '@/components/Layout/Layout';
+import Layout from '../search/[...param]/node_modules/@/components/Layout/Layout';
 import MusicTable from '@/components/MusicTable/MusicTable';
 import { Col, Divider, Row } from 'antd';
 const index = ({ musics, subject, title }) => {
@@ -28,7 +28,7 @@ export async function getServerSideProps({ query }) {
   switch (query.slug) {
     case 'top-best-music':
       try {
-        musics = await getBestMusic();
+        musics = await getBestMusic(50);
         subject = query.slug;
         title = 'بهترین های کاست';
       } catch (e) {
@@ -37,7 +37,7 @@ export async function getServerSideProps({ query }) {
       break;
     case 'latest-music':
       try {
-        musics = await getLastMusic();
+        musics = await getLastMusic(50);
         subject = query.slug;
         title = ' جدیدترین کاست ها';
       } catch (e) {
@@ -46,7 +46,7 @@ export async function getServerSideProps({ query }) {
       break;
     case 'latest-music-in-cassettify':
       try {
-        musics = await getLastMusicInSite();
+        musics = await getLastMusicInSite(50);
         subject = query.slug;
         title = ' آخرین کاست های اضافه شده';
       } catch (e) {

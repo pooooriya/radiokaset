@@ -9,7 +9,6 @@ import s from './SearchBoxForm.module.scss';
 
 const validate = (values) => {
   const errors = {};
-  console.log(values);
   if (!values.search) {
     errors.search = messageValidator.require;
   }
@@ -28,18 +27,19 @@ const SearchBoxForm = ({ handleSubmit, initialValues }) => {
     >
       {(form) => (
         <Form className={s.form}>
-          <Row gutter={24}>
-            <Col xs={24} lg={17}>
+          <Row gutter={[24]} justify="space-between">
+            <Col xs={24} md={18} lg={17}>
               <div className={s.searchInput}>
                 <AutoCompleteWithCates
                   {...form}
+                  wrapperCol={20}
                   name="search"
                   type="search"
                   placeholder="خواننده یا آهنگ مورد نظر را تایپ کنید ... "
                 />
               </div>
             </Col>
-            <Col xs={24} lg={7}>
+            <Col xs={24} md={6} lg={7} className={s.Button}>
               <Button
                 // {...form}
                 disabled={!form.dirty || form.isSubmitting}
@@ -47,7 +47,6 @@ const SearchBoxForm = ({ handleSubmit, initialValues }) => {
                 type="primary"
                 htmlType="submit"
                 size="large"
-                ghost
               >
                 کاست رو پیدا کن
               </Button>
@@ -59,8 +58,12 @@ const SearchBoxForm = ({ handleSubmit, initialValues }) => {
   );
 };
 
+SearchBoxForm.defaultProps = {
+  handleSubmit: null,
+};
+
 SearchBoxForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
 };
 
 export default SearchBoxForm;

@@ -65,7 +65,6 @@ export async function getServerSideProps({ params }) {
 
   try {
     podcasts = await getPodcastMusics(20);
-    console.log(podcasts.data.data);
   } catch (e) {
     throw new Error('some thing went wrong !!!');
   }

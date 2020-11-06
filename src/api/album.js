@@ -69,6 +69,52 @@ export const getAlbums = (limit) => {
   });
 };
 
+export const getAlbumById = (id) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `
+    {
+      albums(where:{id:${id}}
+       ){
+          id
+           persianTitle
+           englishTitle
+           releasedAt
+           albumDuration
+           description
+           genre{
+            persianTittle
+            englishTitle
+           }
+           cover{
+             url
+           }
+      musics{
+        persianTitle
+        englishTitle
+        musicLength
+        lyrics
+        view
+        cover{
+          url
+        }
+        artist{
+          persianTitle
+        englishTitle
+  }
+        
+      }
+      artist{
+        persianTitle
+        englishTitle
+      }
+         }
+     }
+      `,
+  });
+};
+
 export const getMoreAlbum = (start, limit) => {
   const url = GRAPHQL();
   return axios.post(url, {

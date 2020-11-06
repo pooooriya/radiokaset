@@ -4,6 +4,7 @@ import { Col, Divider, Row, Space, Table } from 'antd';
 import {
   AlignCenterOutlined,
   CaretRightOutlined,
+  DownloadOutlined,
   MinusCircleTwoTone,
   PauseCircleOutlined,
   PlayCircleOutlined,
@@ -14,6 +15,10 @@ import s from './MusicTable.scss';
 import { appContext } from '@/providers/App';
 import { API_URL } from '@/root/env';
 import ReactImageFallback from 'react-image-fallback';
+import Link from '../../pages/search/[...param]/node_modules/@/components/Link/Link';
+import download from 'downloadjs';
+import Axios from 'axios';
+import { saveAs } from 'file-saver';
 
 const MusicTable = ({ data, title, album, subjects }) => {
   const dataSource = [];
@@ -23,7 +28,6 @@ const MusicTable = ({ data, title, album, subjects }) => {
     setPLaylist,
     setCurrentIndex,
     currentIndex,
-    setIsPlaying,
     isPlaying,
     playlist,
   } = useContext(appContext);
@@ -69,9 +73,12 @@ const MusicTable = ({ data, title, album, subjects }) => {
   data?.map((i, index) => {
     dataSource.push({
       key: index + 1,
+      artist: `${i?.artist?.persianTitle}`,
       musicTitle: `${i?.englishTitle} (${i?.persianTitle})`,
       musicLength: i?.musicLength,
-      album: `${i?.album?.englishTitle} (${i?.album?.persianTitle})`,
+      album: i?.album
+        ? `${i?.album?.englishTitle} (${i?.album?.persianTitle})`
+        : 'SingleTrack',
       view: i?.view != null ? i.view : '0',
       cover: i?.cover?.url ? `${API_URL}${i?.cover.url}` : '/defaultavatar.jpg',
       lyrics: i?.lyrics ? i?.lyrics : 'تکستی برای این آهنگ یافت نشد',
@@ -125,6 +132,12 @@ const MusicTable = ({ data, title, album, subjects }) => {
       title: 'آهنگ',
       dataIndex: 'musicTitle',
       key: 'musicTitle',
+      render: (text, record) => (
+        <div className={s.musicInfo}>
+          <h4>{record?.musicTitle}</h4>
+          <h5>{record?.artist}</h5>
+        </div>
+      ),
     },
     {
       title: 'آلبوم',
@@ -210,7 +223,6 @@ const MusicTable = ({ data, title, album, subjects }) => {
           onRow={(record, rowIndex) => {
             return {
               onClick: () => {
-                console.log(record, subjects, playlist);
                 playingMusic(record, rowIndex);
               },
             };

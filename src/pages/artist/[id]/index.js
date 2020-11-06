@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Layout from '@/components/Layout/Layout';
 import ArtistHeader from '@/components/ArtistHeader/ArtistHeader';
 import MusicTable from '@/components/MusicTable/MusicTable';
@@ -12,7 +11,7 @@ import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 
 const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
-  console.log(artistInfo);
+  console.log(getAlbums, 'getAlbums');
 
   const structuredData =
     getAlbums?.artists[0]?.albums.length > 0
@@ -114,11 +113,15 @@ export async function getServerSideProps({ params }) {
   try {
     getMusics = await getAllMusic(params.id);
     getAlbums = await getAlbumsByArtist(params.id);
-    getTopFiveMusic = await getTopFiveMusicByArtist(params.id);
+    getTopFiveMusic = await getTopFiveMusicByArtist(
+      params.id,
+      getAlbums?.data?.data?.artists[0]?.albums?.length > 0 ? 10 : null
+    );
     artistInfo = await getArtist(params.id);
   } catch (e) {
     throw new Error('some thing went wrong !!!');
   }
+
   return {
     props: {
       getTopFiveMusic: getTopFiveMusic?.data?.data || null,

@@ -67,7 +67,6 @@ export async function getServerSideProps({ params }) {
 
   try {
     genres = await getGenres(20);
-    console.log(genres.data.data);
   } catch (e) {
     throw new Error('some thing went wrong !!!');
   }

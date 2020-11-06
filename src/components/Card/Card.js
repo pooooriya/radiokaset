@@ -1,6 +1,6 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Carousel, Divider, Row } from 'antd';
+import { Divider, Row } from 'antd';
 import CardItem from './CardItem/CardItem';
 import s from './Card.scss';
 import Flickity from 'react-flickity-component';
@@ -10,22 +10,45 @@ import Link from '@/components/Link/Link';
 
 const Card = ({ title, res, isArtist, subject }) => {
   const audiolist = [];
-  const { setPLaylist, setCurrentIndex } = useContext(appContext);
+  const { setPLaylist, setCurrentIndex, playlist } = useContext(appContext);
 
   const addToPlayList = (index) => {
-    res.musics.map((i, index) => {
-      audiolist.push({
-        name: i?.persianTitle,
-        singer: i?.artist?.persianTitle,
-        cover: `${API_URL}${i?.cover?.url}`,
-        musicSrc: `${API_URL}${i?.musicFile?.url}`,
-        lyric: i?.lyrics ? i?.lyrics : '',
-        key: index,
-        idi: i?.id,
+    if (playlist.length <= 0) {
+      res.musics.map((i, index) => {
+        audiolist.push({
+          name: i?.persianTitle,
+          singer: i?.artist?.persianTitle,
+          cover: `${API_URL}${i?.cover?.url}`,
+          musicSrc: `${API_URL}${i?.musicFile?.url}`,
+          lyric: i?.lyrics ? i?.lyrics : '',
+          key: index,
+          idi: i?.id,
+          table: subject,
+        });
       });
-    });
-    setPLaylist(audiolist);
-    setCurrentIndex(index);
+      setPLaylist(audiolist);
+      setCurrentIndex(index);
+    } else {
+      if (playlist.filter((i) => i.table !== subject).length > 0) {
+        res?.musics?.map((i, index) => {
+          setPLaylist([]);
+          audiolist.push({
+            name: i?.persianTitle,
+            singer: i?.artist?.persianTitle,
+            cover: `${API_URL}${i?.cover?.url}`,
+            musicSrc: `${API_URL}${i?.musicFile?.url}`,
+            lyric: i?.lyrics ? i?.lyrics : '',
+            key: index,
+            table: subject,
+            idi: i?.id,
+          });
+        });
+        setPLaylist(audiolist);
+        setCurrentIndex(index);
+      } else {
+        setCurrentIndex(index);
+      }
+    }
   };
   const flickityOptions = {
     wrapAround: true,
@@ -61,17 +84,15 @@ const Card = ({ title, res, isArtist, subject }) => {
         {!isArtist
           ? res?.musics?.map((i, index) => (
               <>
-                <Link to={`/tags/${subject}?index=${index}`}>
-                  <CardItem
-                    persianTitle={i.persianTitle}
-                    cover={i.cover}
-                    file={i.musicFile}
-                    artist={i.artist}
-                    lyrics={i.lyrics}
-                    index={index}
-                    onClick={addToPlayList}
-                  />
-                </Link>
+                <CardItem
+                  persianTitle={i.persianTitle}
+                  cover={i.cover}
+                  file={i.musicFile}
+                  artist={i.artist}
+                  lyrics={i.lyrics}
+                  index={index}
+                  onClick={() => addToPlayList(index)}
+                />
               </>
             ))
           : res?.artists?.map((i) => (
@@ -82,7 +103,6 @@ const Card = ({ title, res, isArtist, subject }) => {
                   cover={i.cover}
                   file={i.musicFile}
                   lyrics={i.lyrics}
-                  onClick={addToPlayList}
                 />
               </Link>
             ))}

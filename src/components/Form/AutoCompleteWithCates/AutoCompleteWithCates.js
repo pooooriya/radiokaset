@@ -6,18 +6,13 @@ import { Field } from 'formik';
 import ReactImageFallback from 'react-image-fallback';
 import { API_URL } from '@/root/env';
 import Link from '@/components/Link';
-// import { getMiniSearch } from '@/api/search';
-import { hashedID } from '@/modules/seo';
 import s from './AutoCompleteWithCates.module.scss';
+import { searchArtist, searchMusic } from '@/root/src/api/music';
 
 function AutoCompleteWithCates({
   name,
   hasFeedback,
-  // values,
-  // errors,
-  // handleSubmit,
   setFieldValue,
-  // setFieldTouched,
   label,
   icon,
   labelCol,
@@ -40,31 +35,21 @@ function AutoCompleteWithCates({
     label: (
       <div>
         <Link to={item.link}>
-          <div className={s.certainCategorySearch__itemMeta}>
-            {item.image && (
-              <div className={s.certainCategorySearch__itemMetaAvatar}>
-                <ReactImageFallback
-                  src={item.image}
-                  alt={item.name}
-                  fallbackImage="/Avatar.jpg"
-                  initialImage="/Avatar.jpg"
-                />
-              </div>
-            )}
-            <div className={s.certainCategorySearch__itemMetaContent}>
-              <h4 className={s.certainCategorySearch__itemMetaContent___title}>
-                {item.name}
-              </h4>
-              <div className={s.certainCategorySearch__itemMetaContent___desc}>
-                {item.desc && <span> {item.desc} </span>}
-                {item.location && item.location !== '|' && (
-                  <span>
-                    <i className="icon-placeholder1" />
-                    {item.location}
-                  </span>
-                )}
-              </div>
+          <div className={s.search}>
+            <div className={s.searchInfo}>
+              <h4>{item?.name}</h4>
+              {item?.artist && <h5>{item?.artist}</h5>}
             </div>
+
+            {item.image && (
+              <ReactImageFallback
+                src={item.image}
+                alt={item.name}
+                fallbackImage="/defaultavatar.jpg"
+                initialImage="/defaultavatar.jpg"
+                className={s.searchCover}
+              />
+            )}
           </div>
         </Link>
       </div>
@@ -72,134 +57,63 @@ function AutoCompleteWithCates({
   });
 
   const searchResult = async (value) => {
-    const data = await getMiniSearch(value);
+    let data = null;
+    data = await searchMusic(value);
+    if (data?.data?.length <= 0) {
+      data = await searchArtist(value);
+    }
+
     const searchData = data.data;
 
     const optionsData = [];
 
-    if (searchData.doctors && searchData.doctors.length > 0) {
-      const doctorsData = searchData.doctors.map((item) =>
+    if (searchData.find((i) => i.artist)) {
+      const dataPreview = searchData.map((item) =>
         renderItem({
           id: item.id,
-          link: `/doctors/${hashedID(item.id, 'doctor')}`,
+          link: `/artist/${item?.artist?.id}`,
           image:
-            item.avatar && item.avatar.url
-              ? `${API_URL}${item.avatar.url}`
-              : '/Avatar.jpg',
-          name: item.displayName,
-          desc: item.specialityName,
-          location: item.cityName,
+            item.cover && item.cover.url
+              ? `${API_URL}${item.cover.url}`
+              : '/defaultavatar.jpg',
+          name: `${item.persianTitle}`,
+          artist: item?.artist?.persianTitle,
         })
       );
 
       optionsData.push({
-        label: renderTitle('پزشکان', '/doctors'),
-        options: doctorsData,
+        label: renderTitle('کاست ها', '/artists'),
+        options: dataPreview,
       });
-    }
-
-    if (searchData.healthCenters && searchData.healthCenters.length > 0) {
-      const healthCentersData = searchData.healthCenters.map((item) =>
+    } else {
+      const dataPreview = searchData.map((item) =>
         renderItem({
           id: item.id,
-          link: `/health-centers/${hashedID(item.id, 'healthcenter')}`,
+          link: `/artist/${item?.id}`,
           image:
-            item.thumbnail && item.thumbnail.url
-              ? `${API_URL}${item.thumbnail.url}`
-              : '/Avatar.jpg',
-          name: item.name,
-          desc: '',
-          location: item.adress,
+            item.cover && item.cover.url
+              ? `${API_URL}${item.cover.url}`
+              : '/defaultavatar.jpg',
+          name: `${item.persianTitle}`,
         })
       );
 
       optionsData.push({
-        label: renderTitle('مراکز درمانی', '/health-centers'),
-        options: healthCentersData,
+        label: renderTitle('آرتیست ها', '/artists'),
+        options: dataPreview,
       });
     }
-
-    if (searchData.articles && searchData.articles.length > 0) {
-      const articlesData = searchData.articles.map((item) =>
-        renderItem({
-          id: item.id,
-          link: `/articles/${hashedID(item.id, 'article')}`,
-          image:
-            item.thumbnail && item.thumbnail.url
-              ? `${API_URL}${item.thumbnail.url}`
-              : '/Avatar.jpg',
-          name: item.title,
-          desc: '',
-          location: '',
-        })
-      );
-
-      optionsData.push({
-        label: renderTitle('مقالات', '/articles'),
-        options: articlesData,
-      });
-    }
-
-    if (searchData.qas && searchData.qas.length > 0) {
-      const qasData = searchData.qas.map((item) =>
-        renderItem({
-          id: item.id,
-          link: `/faq/${hashedID(item.id, 'faq')}`,
-          image:
-            item.user && item.user.avatar && item.user.avatar.url
-              ? `${API_URL}${item.user.avatar.url}`
-              : '/Avatar.jpg',
-          name: item.title,
-          desc: `${item.comments} پاسخ`,
-          location: '',
-        })
-      );
-
-      optionsData.push({
-        label: renderTitle('سوالات', '/faq'),
-        options: qasData,
-      });
-    }
-
-    const servicesData = [];
-
-    if (searchData.services && searchData.services.length > 0) {
-      searchData.services.forEach((service) => {
-        if (service.children && service.children.length > 0) {
-          const serviceData = service.children.map((child) => {
-            return {
-              value: child.name,
-              label: (
-                <span className={s.certainCategorySearch__catesItem}>
-                  {child.name}
-                </span>
-              ),
-            };
-          });
-
-          servicesData.push({
-            label: renderTitle(service.name, ''),
-            options: serviceData,
-          });
-        }
-      });
-    }
-
-    const options = [...optionsData, ...servicesData];
-
+    const options = [...optionsData];
     setState({
       result: options,
     });
   };
   const handleSearch = () => {
     const input = document.getElementById('inputCategorySearch');
-
     let typingTimer = null;
-
     input.addEventListener('keydown', () => {
       clearTimeout(typingTimer);
     });
-
     input.addEventListener('keyup', () => {
       clearTimeout(typingTimer);
       typingTimer = setTimeout(() => {
@@ -213,10 +127,8 @@ function AutoCompleteWithCates({
   }, []);
 
   const handleChange = (val) => {
-    // console.log(`selected ${val}`);
     const valueSelect = val && val.value ? val.value : val || '';
     setFieldValue(name, valueSelect);
-    // setValue(val);
   };
 
   const { result } = state;
@@ -226,9 +138,6 @@ function AutoCompleteWithCates({
       {({ field, meta }) => (
         <Form.Item
           label={label}
-          // validateStatus={errors[name] ? 'error' : 'success'}
-          // hasFeedback={!!errors[name]}
-          // help={errors[name]}
           hasFeedback={hasFeedback && !!meta.error}
           validateStatus={meta.error && 'error'}
           help={meta.error}
@@ -249,10 +158,7 @@ function AutoCompleteWithCates({
             backfill
             onChange={handleChange}
           >
-            <Input
-              prefix={icon && <i className={cx(icon, 'selectIcon')} />}
-              // onChange={handleSearch}
-            />
+            <Input prefix={icon && <i className={cx(icon, 'selectIcon')} />} />
           </AutoComplete>
         </Form.Item>
       )}
@@ -267,11 +173,7 @@ AutoCompleteWithCates.propTypes = {
   labelCol: PropTypes.object,
   wrapperCol: PropTypes.object,
   name: PropTypes.any.isRequired,
-  // values: PropTypes.any.isRequired,
-  // errors: PropTypes.any.isRequired,
-  // handleSubmit: PropTypes.any.isRequired,
   setFieldValue: PropTypes.any.isRequired,
-  // setFieldTouched: PropTypes.any.isRequired,
 };
 
 AutoCompleteWithCates.defaultProps = {

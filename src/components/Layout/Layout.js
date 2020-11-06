@@ -1,26 +1,20 @@
-import { Layout, Menu, Breadcrumb, ConfigProvider } from 'antd';
-import Link from 'next/link';
+import { Layout, Menu, ConfigProvider, BackTop } from 'antd';
+import Link from '@/components/Link/Link';
 import {
   UserOutlined,
-  MenuUnfoldOutlined,
   SearchOutlined,
   CustomerServiceOutlined,
-  ControlOutlined,
-  SoundOutlined,
   CaretRightOutlined,
-  ForwardOutlined,
-  RightSquareOutlined,
-  ArrowRightOutlined,
-  CaretRightFilled,
-  RightOutlined,
   LeftOutlined,
   UnorderedListOutlined,
+  UpOutlined,
 } from '@ant-design/icons';
 import { useState } from 'react';
 import cx from 'classnames';
 import ReactImageFallback from 'react-image-fallback';
 import faIR from 'antd/lib/locale-provider/fa_IR';
 import withSizes from 'react-sizes';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const { Header, Sider } = Layout;
 
@@ -57,26 +51,23 @@ const MasterLayout = (props) => {
           </div>
 
           <Menu
-            defaultSelectedKeys={['1']}
             mode="inline"
             theme="dark"
             direction="ltr"
+            defaultSelectedKeys={['1']}
           >
             <Menu.Item key="1" icon={<CustomerServiceOutlined />}>
-              <Link href="/">کاست</Link>
+              <Link to="/">کاست</Link>
             </Menu.Item>
 
-            <Menu.Item key="2" icon={<SearchOutlined />}>
-              <Link href="/search">جست و جو</Link>
-            </Menu.Item>
-            <Menu.Item key="3" icon={<ControlOutlined />}>
-              <Link href="/genre">سبک ها</Link>
-            </Menu.Item>
+            {/* <Menu.Item key="2" icon={<SearchOutlined />}>
+              <Link to="/search">جست و جو</Link>
+            </Menu.Item> */}
             <Menu.Item key="4" icon={<UserOutlined />}>
-              <Link href="/artist"> هنرمندان</Link>
+              <Link to="/artist"> هنرمندان</Link>
             </Menu.Item>
             <Menu.Item key="5" icon={<CaretRightOutlined />}>
-              <Link href="/album">آلبوم</Link>
+              <Link to="/album">آلبوم</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -99,18 +90,38 @@ const MasterLayout = (props) => {
               <UnorderedListOutlined onClick={onCollapse} />
             </div>
             <div className="header_handwriter">
-              <ReactImageFallback
-                fallbackImage="/handwriter.png"
-                src="/handwrite.png"
-                className="headerHandwrite"
-              />
+              <Link>
+                <ReactImageFallback
+                  fallbackImage="/handwriter.png"
+                  src="/handwrite.png"
+                  className="headerHandwrite"
+                />
+              </Link>
             </div>
             <div className="header_signBox">
-              <SearchOutlined rotate={90} />
+              <AnchorLink
+                href="#boxSearch"
+                offset="50"
+                style={{ color: '#fff' }}
+                // className={s.sidebarHeader__search}
+              >
+                <SearchOutlined rotate={90} />
+              </AnchorLink>
             </div>
           </Header>
           {props.children}
         </Layout>
+        <BackTop
+          visibilityHeight={600}
+          style={{
+            left: `${isTablet ? '50px' : !collapse ? '230px' : '100px'}`,
+            transition: 'all ease .2s',
+          }}
+        >
+          <div className="layout_moveUp">
+            <UpOutlined />
+          </div>
+        </BackTop>
       </Layout>
     </ConfigProvider>
   );

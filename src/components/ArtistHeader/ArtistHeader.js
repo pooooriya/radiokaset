@@ -1,19 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import s from './ArtistHeader.scss';
 import { Col, Row } from 'antd';
 import ReactImageFallback from 'react-image-fallback';
 import Button from '@/components/Button/Button';
 import {
-  FileExcelFilled,
-  FileTextOutlined,
   InstagramOutlined,
-  PlayCircleOutlined,
   SendOutlined,
-  ShareAltOutlined,
-  SoundOutlined,
   TwitterOutlined,
-  WifiOutlined,
 } from '@ant-design/icons';
 import { API_URL } from '@/root/env';
 
@@ -59,7 +52,7 @@ const ArtistHeader = ({ artistInfo: { artist } }) => {
                 justify="start"
                 className={s.ArtistHeader_actions}
               >
-                <Col>
+                {/* <Col>
                   <Button
                     // {...form}
                     // disabled={!form.dirty || form.isSubmitting}
@@ -71,7 +64,7 @@ const ArtistHeader = ({ artistInfo: { artist } }) => {
                     <FileTextOutlined className={s.buttonIcon} />
                     بیوگرافی کامل
                   </Button>
-                </Col>
+                </Col> */}
                 {artist?.socialAddress && (
                   <>
                     {artist?.socialAddress?.instagram && (

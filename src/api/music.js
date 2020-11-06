@@ -1,16 +1,22 @@
 import axios from 'axios';
-import { GRAPHQL, POST_VISIT_MUSIC } from '@/constants/api';
+import {
+  GRAPHQL,
+  MINI_SEARCH_ARTIST,
+  MINI_SEARCH_MUSIC,
+  POST_VISIT_MUSIC,
+} from '@/constants/api';
 
-export const getLastMusicInSite = () => {
+export const getLastMusicInSite = (limit) => {
   const url = GRAPHQL();
   return axios.post(url, {
     query: `{
-        musics(sort:"published_at:DESC",limit:15){
+        musics(sort:"published_at:DESC",limit:${limit}){
             id
             persianTitle
             englishTitle
             view
             lyrics
+            musicLength
             artist{
               persianTitle
               englishTitle
@@ -21,22 +27,31 @@ export const getLastMusicInSite = () => {
             musicFile{
               url
             }
+            album{
+              persianTitle
+              englishTitle
+            }
+            artist{
+              persianTitle
+        englishTitle
+      }
          }
       }`,
   });
 };
 
-export const getBestMusic = () => {
+export const getBestMusic = (limit) => {
   const url = GRAPHQL();
 
   return axios.post(url, {
     query: `{
-      musics(sort:"view:DESC",limit:15){
+      musics(sort:"view:DESC",limit:${limit}){
           id
           persianTitle
           englishTitle
           view
           lyrics
+          musicLength
           artist{
             persianTitle
             englishTitle
@@ -47,23 +62,32 @@ export const getBestMusic = () => {
           musicFile{
             url
           }
+          album{
+            persianTitle
+            englishTitle
+          }
+          artist{
+            persianTitle
+      englishTitle
+    }
        }
     }
     `,
   });
 };
 
-export const getLastMusic = () => {
+export const getLastMusic = (limit) => {
   const url = GRAPHQL();
 
   return axios.post(url, {
     query: `{
-      musics(sort:"releasedDate:DESC",limit:15){
+      musics(sort:"releasedDate:DESC",limit:${limit}){
           id
           persianTitle
           englishTitle
           view
           lyrics
+          musicLength
           artist{
             persianTitle
             englishTitle
@@ -74,19 +98,27 @@ export const getLastMusic = () => {
           musicFile{
             url
           }
+          album{
+            persianTitle
+            englishTitle
+          }
+          artist{
+            persianTitle
+      englishTitle
+    }
        }
     }
     `,
   });
 };
 
-export const getTopFiveMusicByArtist = (id) => {
+export const getTopFiveMusicByArtist = (id, limit) => {
   const url = GRAPHQL();
 
   return axios.post(url, {
     query: `{
       artists(where: { id: ${id} }) {
-        musics(sort: "view:DESC", limit: 10) {
+        musics(sort: "view:DESC", limit: ${limit}) {
           id
           persianTitle
           englishTitle
@@ -103,6 +135,10 @@ export const getTopFiveMusicByArtist = (id) => {
             persianTitle
             englishTitle
           }
+          artist{
+            persianTitle
+          englishTitle
+    }
         }
       }
     }
@@ -282,4 +318,24 @@ export const getTopBestPodcast = (limit) => {
 export const visitMusic = (id) => {
   const url = POST_VISIT_MUSIC(id);
   return axios.put(url);
+};
+
+export const searchMusic = (query) => {
+  const value = encodeURIComponent(query);
+  const url = MINI_SEARCH_MUSIC(value);
+  return axios.get(url, {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+  });
+};
+
+export const searchArtist = (query) => {
+  const value = encodeURIComponent(query);
+  const url = MINI_SEARCH_ARTIST(value);
+  return axios.get(url, {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+  });
 };

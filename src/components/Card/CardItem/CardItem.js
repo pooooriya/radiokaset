@@ -5,9 +5,9 @@ import { API_URL } from '@/root/env';
 import { FileTextOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import ReactImageFallback from 'react-image-fallback';
 
-const Card_Item = ({ persianTitle, cover, artist }) => {
+const Card_Item = ({ persianTitle, cover, artist, onClick }) => {
   return (
-    <div className={s.artists}>
+    <div className={s.artists} onClick={() => onClick()}>
       <ReactImageFallback
         src={`${API_URL}${cover?.url}`}
         className={s.artists_cover_inner}
