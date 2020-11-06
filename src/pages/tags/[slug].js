@@ -5,7 +5,7 @@ import {
   getLastestPodcast,
   getTopBestPodcast,
 } from '@/api/music';
-import Layout from '../search/[...param]/node_modules/@/components/Layout/Layout';
+import Layout from '@/components/Layout/Layout';
 import MusicTable from '@/components/MusicTable/MusicTable';
 import { Col, Divider, Row } from 'antd';
 const index = ({ musics, subject, title }) => {
