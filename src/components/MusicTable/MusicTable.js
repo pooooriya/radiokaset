@@ -3,22 +3,13 @@ import PropTypes from 'prop-types';
 import { Col, Divider, Row, Space, Table } from 'antd';
 import {
   AlignCenterOutlined,
-  CaretRightOutlined,
-  DownloadOutlined,
-  MinusCircleTwoTone,
   PauseCircleOutlined,
   PlayCircleOutlined,
-  PlaySquareOutlined,
-  PlusCircleTwoTone,
 } from '@ant-design/icons';
 import s from './MusicTable.scss';
 import { appContext } from '@/providers/App';
 import { API_URL } from '@/root/env';
 import ReactImageFallback from 'react-image-fallback';
-import Link from '../../pages/search/[...param]/node_modules/@/components/Link/Link';
-import download from 'downloadjs';
-import Axios from 'axios';
-import { saveAs } from 'file-saver';
 
 const MusicTable = ({ data, title, album, subjects }) => {
   const dataSource = [];
