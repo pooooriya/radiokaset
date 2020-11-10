@@ -32,14 +32,10 @@ const Player = () => {
       defaultPosition={{ right: '30px', bottom: '30px' }}
       audioLists={playlist}
       playIndex={currentIndex}
-      onAudioEnded={(currentPlayId, audioLists, audioInfo) => {
-        audioLists.length > currentIndex + 1
-          ? setCurrentIndex(currentIndex + 1)
-          : setCurrentIndex(0);
-      }}
       onAudioPlay={(audioInfo) => {
         setIsPlaying(true);
         visit(audioInfo?.idi);
+        setCurrentIndex(audioInfo?.key);
       }}
       onAudioPause={() => setIsPlaying(false)}
       {...options}
