@@ -48,7 +48,12 @@ const index = ({ artists }) => {
           </div>
         }
       >
-        <Row className="pt-5" gutter={[24, 24]} justify="center" align="middle">
+        <Row
+          className="pt-5 px-3"
+          gutter={[24, 24]}
+          justify="center"
+          align="middle"
+        >
           {data?.map((i) => (
             <Col xl={3} lg={5} xs={12} sm={8} md={6}>
               <Link to={`/artist/${i?.id}`}>

@@ -8,6 +8,8 @@ import {
   LeftOutlined,
   UnorderedListOutlined,
   UpOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from '@ant-design/icons';
 import { useState } from 'react';
 import cx from 'classnames';
@@ -15,10 +17,12 @@ import ReactImageFallback from 'react-image-fallback';
 import faIR from 'antd/lib/locale-provider/fa_IR';
 import withSizes from 'react-sizes';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { useRouter } from 'next/router';
 
 const { Header, Sider } = Layout;
 
 const MasterLayout = (props) => {
+  const router = useRouter();
   const { isTablet } = props;
   const [collapse, setCollapse] = useState(true);
   const onCollapse = () => {
@@ -47,26 +51,36 @@ const MasterLayout = (props) => {
               fallbackImage="/logo.svg"
               className="logo"
             />
-            <LeftOutlined onClick={onCollapse} style={{ color: '#fff' }} />
+            {collapse ? (
+              <MenuUnfoldOutlined
+                onClick={onCollapse}
+                style={{ color: '#fff' }}
+              />
+            ) : (
+              <MenuFoldOutlined
+                onClick={onCollapse}
+                style={{ color: '#fff' }}
+              />
+            )}
           </div>
 
           <Menu
             mode="inline"
             theme="dark"
             direction="ltr"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={['/']}
+            selectedKeys={[router?.pathname]}
           >
-            <Menu.Item key="1" icon={<CustomerServiceOutlined />}>
+            <Menu.Item key="/" icon={<CustomerServiceOutlined />}>
               <Link to="/">کاست</Link>
             </Menu.Item>
-
             {/* <Menu.Item key="2" icon={<SearchOutlined />}>
               <Link to="/search">جست و جو</Link>
             </Menu.Item> */}
-            <Menu.Item key="4" icon={<UserOutlined />}>
+            <Menu.Item key="/artist" icon={<UserOutlined />}>
               <Link to="/artist"> هنرمندان</Link>
             </Menu.Item>
-            <Menu.Item key="5" icon={<CaretRightOutlined />}>
+            <Menu.Item key="/album" icon={<CaretRightOutlined />}>
               <Link to="/album">آلبوم</Link>
             </Menu.Item>
           </Menu>
@@ -90,7 +104,7 @@ const MasterLayout = (props) => {
               <UnorderedListOutlined onClick={onCollapse} />
             </div>
             <div className="header_handwriter">
-              <Link>
+              <Link to="/">
                 <ReactImageFallback
                   fallbackImage="/handwriter.png"
                   src="/handwrite.png"

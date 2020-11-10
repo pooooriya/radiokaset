@@ -11,15 +11,7 @@ import Button from '@/components/Button/Button';
 
 const Interduction = (props) => {
   return (
-    <Row
-      className={s.cassetteBackground}
-      style={{
-        backgroundImage:
-          'linear-gradient(to right, #00000075, #0000009a),url(/backgroundCassette.jpg);',
-      }}
-      justify="center"
-      align="middle"
-    >
+    <Row className={s.cassetteBackground} justify="center" align="middle">
       <Col lg={12} xs={20}>
         <h1>با کاستیفای بی وقفه به موزیک دلخواهت گوش بده !</h1>
         <SearchBox withBoxshadow />
@@ -40,6 +32,7 @@ const Interduction = (props) => {
                 htmlType="submit"
                 size="large"
                 icon={<InstagramOutlined className={s.buttonIcon} />}
+                className={s.button}
               >
                 اینستاگرام
               </Button>
@@ -61,25 +54,6 @@ const Interduction = (props) => {
                 icon={<SendOutlined className={s.buttonIcon} />}
               >
                 تلگرام
-              </Button>
-            </a>
-          </Col>
-          <Col>
-            <a
-              href="https://twitter.com/cassettify"
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-            >
-              <Button
-                // {...form}
-                // disabled={!form.dirty || form.isSubmitting}
-                name="submit"
-                type="primary"
-                htmlType="submit"
-                size="large"
-                icon={<TwitterOutlined className={s.buttonIcon} />}
-              >
-                توپیتر
               </Button>
             </a>
           </Col>

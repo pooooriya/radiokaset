@@ -146,6 +146,9 @@ select:-webkit-autofill {
 /*=================== SideBar =================== */
 
 :global {
+  .px-3 {
+    padding: 0 10px;
+  }
   .ant-slider {
     width: 90%;
   }
@@ -163,6 +166,13 @@ select:-webkit-autofill {
       font-size: 20px;
     }
   }
+
+  .ant-layout {
+    min-width: calc(100% - 80px);
+    @media (max-width: 768px) {
+      min-width: 100%;
+    }
+  }
   .ant-layout.site-layout {
     position: relative;
     z-index: 1;
@@ -170,7 +180,6 @@ select:-webkit-autofill {
       margin: 0 !important;
     }
   }
-
   .ant-menu-item {
     width: 100%;
     padding: 17px !important;
@@ -252,12 +261,9 @@ select:-webkit-autofill {
     width: 100%;
 
     span {
-      display: none;
-      @media (max-width: 768px) {
-        margin-top: 30px;
-        font-size: 35px;
-        display: flex;
-      }
+      margin-top: 30px;
+      font-size: 25px;
+      display: flex;
     }
   }
 
@@ -269,8 +275,12 @@ select:-webkit-autofill {
   }
 
   .header_collapesd {
-    span {
-      font-size: 20px;
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+      span {
+        font-size: 20px;
+      }
     }
   }
 
@@ -516,6 +526,12 @@ select:-webkit-autofill {
       color: rgb(255, 255, 255);
       background-color: #ed215d !important;
       border-color: #ed215d;
+    }
+
+    .ant-btn-primary[disabled] {
+      background: #a5113e !important;
+      background-color: #a5113e !important;
+      border-color: #7e0f30 !important;
     }
 
     .ant-btn-disabled.ant-btn-primary,
@@ -863,10 +879,16 @@ select:-webkit-autofill {
   }
 
   .header_signBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 20px;
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 20px;
+      span {
+        font-size: 20px;
+      }
+    }
   }
 
   /*=================== End/header =================== */

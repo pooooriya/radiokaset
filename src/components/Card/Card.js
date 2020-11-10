@@ -65,7 +65,7 @@ const Card = ({ title, res, isArtist, subject }) => {
           <span className={s.divider_right}>{title}</span>
           <span className={s.divider_left}>
             <Link
-              to={res?.artists?.length > 0 ? `/artists` : `/tags/${subject}`}
+              to={res?.artists?.length > 0 ? `/artist` : `/tags/${subject}`}
             >
               مشاهده همه
             </Link>

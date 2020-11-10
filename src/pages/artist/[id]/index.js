@@ -9,6 +9,7 @@ import { getAlbumsByArtist } from '@/api/album';
 import { API_URL } from '@/root/env';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
+import { v4 as uuidv4 } from 'uuid';
 
 const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
   console.log(getAlbums, 'getAlbums');
@@ -89,14 +90,14 @@ const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
         <MusicTable
           data={getTopFiveMusic.artists[0].musics}
           title="بهترین کاست های آرتیست"
-          subjects="tops"
+          subjects={uuidv4()}
         />
         {getAlbums?.artists[0]?.albums.map((i, index) => (
           <MusicTable
             data={i.musics}
             title={`آلبوم ${i.persianTitle} (${i.englishTitle})`}
             album={i}
-            subjects={`albums${index}`}
+            subjects={uuidv4()}
           />
         ))}
       </Layout>
