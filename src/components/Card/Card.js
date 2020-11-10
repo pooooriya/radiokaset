@@ -56,6 +56,8 @@ const Card = ({ title, res, isArtist, subject }) => {
     dragThreshold: 10,
     lazyLoad: true,
     lazyLoad: 8,
+    freeScroll: true,
+    initialIndex: 2,
   };
 
   return (
@@ -78,7 +80,6 @@ const Card = ({ title, res, isArtist, subject }) => {
         elementType={'div'} // default 'div'
         options={flickityOptions} // takes flickity options {}
         disableImagesLoaded={false} // default false
-        reloadOnUpdate // default false
         static // default false
       >
         {!isArtist

@@ -14,31 +14,33 @@ const Player = () => {
   } = useContext(appContext);
   const [currentPlay, setCurrentPlay] = useState(null);
 
+  console.log(currentIndex);
+
   const visit = async (id) => {
     return await visitMusic(id);
+  };
+
+  const options = {
+    showReload: false,
+    showLyric: true,
+    autoPlayInitLoadPlayList: true,
+    showMiniProcessBar: true,
+    quietUpdate: true,
+    clearPriorAudioLists: true,
+    showMediaSession: true,
   };
 
   return (
     <ReactJkMusicPlayer
       defaultPosition={{ right: '30px', bottom: '30px' }}
-      showMediaSession
       audioLists={playlist}
-      showLyric
-      autoPlayInitLoadPlayList
-      playIndex={currentIndex}
-      showMiniProcessBar
-      quietUpdate
-      clearPriorAudioLists
-      onAudioEnded={(currentPlayId, audioLists, audioInfo) => {
-        audioLists.length > currentIndex + 1
-          ? setCurrentIndex(currentIndex + 1)
-          : setCurrentIndex(0);
-      }}
+      // playIndex={currentIndex}
       onAudioPlay={(audioInfo) => {
         setIsPlaying(true);
         visit(audioInfo?.idi);
       }}
       onAudioPause={() => setIsPlaying(false)}
+      {...options}
     />
   );
 };
