@@ -51,13 +51,9 @@ const Card = ({ title, res, isArtist, subject }) => {
     }
   };
   const flickityOptions = {
-    wrapAround: true,
-    pauseAutoPlayOnHover: false,
     dragThreshold: 10,
-    lazyLoad: true,
-    lazyLoad: 8,
     freeScroll: true,
-    initialIndex: 2,
+    initialIndex: 5,
   };
 
   return (
@@ -79,7 +75,6 @@ const Card = ({ title, res, isArtist, subject }) => {
         className={'carousel'} // default ''
         elementType={'div'} // default 'div'
         options={flickityOptions} // takes flickity options {}
-        disableImagesLoaded={false} // default false
         static // default false
       >
         {!isArtist

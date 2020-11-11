@@ -33,9 +33,12 @@ const Player = () => {
       audioLists={playlist}
       playIndex={currentIndex}
       onAudioPlay={(audioInfo) => {
+        setCurrentIndex(audioInfo?.key);
         setIsPlaying(true);
         visit(audioInfo?.idi);
-        setCurrentIndex(audioInfo?.key);
+        // if (localStorage.getItem('singer') !== audioInfo?.singer) {
+        //   localStorage.setItem('singer', audioInfo.singer);
+        // }
       }}
       onAudioPause={() => setIsPlaying(false)}
       {...options}

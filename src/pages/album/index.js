@@ -11,7 +11,6 @@ import { NextSeo } from 'next-seo';
 import { getMoreAlbum, getAlbums } from '@/api/album';
 
 const index = ({ albums }) => {
-  console.log(albums);
   const [loadmore, setLoadmore] = useState(false);
   const [loading, setloading] = useState(true);
   const [start, setStart] = useState(20);

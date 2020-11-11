@@ -12,8 +12,6 @@ import { NextSeo } from 'next-seo';
 import { v4 as uuidv4 } from 'uuid';
 
 const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
-  console.log(getAlbums, 'getAlbums');
-
   const structuredData =
     getAlbums?.artists[0]?.albums.length > 0
       ? getAlbums?.artists[0]?.albums?.map((i) => {

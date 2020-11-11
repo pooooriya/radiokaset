@@ -2,12 +2,18 @@ import React from 'react';
 import Layout from '../components/Layout/Layout';
 import Card from '@/components/Card/Card';
 import { getLastMusic, getBestMusic, getLastMusicInSite } from '@/api/music';
-import { getLastArtistAdded } from '@/api/artist';
+import { getLastArtistAdded, getLastEditedArtist } from '@/api/artist';
 import { getGenres } from '@/api/genre';
 import { NextSeo } from 'next-seo';
 import Interduction from '@/components/Interduction/Interduction';
 
-const index = ({ newest, bestest, newinsite, lastArtistAdded, genres }) => {
+const index = ({
+  newest,
+  bestest,
+  newinsite,
+  lastArtistAdded,
+  lastEditedArtsit,
+}) => {
   return (
     <Layout>
       <NextSeo
@@ -22,6 +28,7 @@ const index = ({ newest, bestest, newinsite, lastArtistAdded, genres }) => {
         res={newinsite}
         subject="latest-music-in-cassettify"
       />
+      <Card title="آرتیست های بروز شده کاست" res={lastEditedArtsit} isArtist />
       <Card title="جدیدترین آرتیست های کاست" res={lastArtistAdded} isArtist />
       {/* <Card title="آخرین کاست ها" res={genres} /> */}
     </Layout>
@@ -34,7 +41,9 @@ export async function getServerSideProps() {
   let newinsite;
   let lastArtistAdded;
   let genres;
+  let lastEditedArtsit;
   try {
+    lastEditedArtsit = await getLastEditedArtist(15);
     genres = await getGenres(10);
     bestest = await getBestMusic(15);
     newest = await getLastMusic(15);
@@ -46,6 +55,7 @@ export async function getServerSideProps() {
   return {
     props: {
       newest: newest?.data?.data || null,
+      lastEditedArtsit: lastEditedArtsit?.data?.data || null,
       newinsite: newinsite?.data?.data || null,
       lastArtistAdded: lastArtistAdded?.data?.data || null,
       bestest: bestest?.data?.data || null,

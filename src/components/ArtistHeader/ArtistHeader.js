@@ -25,7 +25,7 @@ const ArtistHeader = ({ artistInfo: { artist } }) => {
     >
       <Col xs={24}>
         <Row gutter={48} align="middle">
-          <Col>
+          {/* <Col>
             <ReactImageFallback
               src={
                 artist?.cover?.url
@@ -40,8 +40,8 @@ const ArtistHeader = ({ artistInfo: { artist } }) => {
               alt={artist?.persianTitle}
               className={s.ArtistHeader_cover}
             />
-          </Col>
-          <Col lg={18}>
+          </Col> */}
+          <Col lg={10}>
             <div className={s.ArtistHeader_info}>
               <h1>{artist?.englishTitle}</h1>
               <h2>{artist?.persianTitle}</h2>

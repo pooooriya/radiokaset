@@ -30,6 +30,10 @@ export const getAlbumsByArtist = (id) => {
                 lyrics
                 view
                 musicLength
+                artist{
+                    persianTitle
+                englishTitle
+                }
                 album{
                   englishTitle
                   persianTitle
