@@ -50,7 +50,7 @@ export async function getServerSideProps() {
     newinsite = await getLastMusicInSite(15);
     lastArtistAdded = await getLastArtistAdded(10);
   } catch (e) {
-    throw new Error('some thing went wrong !!!');
+    console.log(e);
   }
   return {
     props: {

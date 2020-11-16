@@ -68,7 +68,7 @@ export async function getServerSideProps({ params }) {
   try {
     playlists = await getPlaylists(20);
   } catch (e) {
-    throw new Error('some thing went wrong !!!');
+    console.log(e);
   }
   return {
     props: {

@@ -33,7 +33,7 @@ export async function getServerSideProps({ params }) {
   try {
     album = await getAlbumById(params?.id);
   } catch (e) {
-    throw new Error('some thing went wrong !!!');
+    console.log(e);
   }
   return {
     props: {

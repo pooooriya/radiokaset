@@ -118,7 +118,7 @@ export async function getServerSideProps({ params }) {
     );
     artistInfo = await getArtist(params.id);
   } catch (e) {
-    throw new Error('some thing went wrong !!!');
+    console.log(e);
   }
 
   return {
