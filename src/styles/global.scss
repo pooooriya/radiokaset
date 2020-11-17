@@ -167,6 +167,10 @@ select:-webkit-autofill {
     }
   }
 
+  .px-2 {
+    padding: 0 20px;
+  }
+
   .ant-layout {
     min-width: calc(100% - 80px);
     @media (max-width: 768px) {

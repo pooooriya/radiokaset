@@ -32,7 +32,7 @@ export async function getServerSideProps({ query }) {
         subject = query.slug;
         title = 'بهترین های کاست';
       } catch (e) {
-        throw new Error('sorry somthing wents wrong');
+        console.log(e);
       }
       break;
     case 'latest-music':
@@ -41,7 +41,7 @@ export async function getServerSideProps({ query }) {
         subject = query.slug;
         title = ' جدیدترین کاست ها';
       } catch (e) {
-        throw new Error('sorry somthing wents wrong');
+        console.log(e);
       }
       break;
     case 'latest-music-in-cassettify':
@@ -50,7 +50,7 @@ export async function getServerSideProps({ query }) {
         subject = query.slug;
         title = ' آخرین کاست های اضافه شده';
       } catch (e) {
-        throw new Error('sorry somthing wents wrong');
+        console.log(e);
       }
       break;
     case 'latest-podcast':
@@ -59,7 +59,7 @@ export async function getServerSideProps({ query }) {
         subject = query.slug;
         title = 'آخرین پادکست ها';
       } catch (e) {
-        throw new Error('sorry somthing wents wrong');
+        console.log(e);
       }
       break;
 
@@ -69,7 +69,7 @@ export async function getServerSideProps({ query }) {
         subject = query.slug;
         title = 'بهترین پادکست ها';
       } catch (e) {
-        throw new Error('sorry somthing wents wrong');
+        console.log(e);
       }
       break;
 

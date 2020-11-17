@@ -6,6 +6,48 @@ import {
   POST_VISIT_MUSIC,
 } from '@/constants/api';
 
+export const getMusicById = (id) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort:"view:DESC",where:{id:${id}}){
+          id
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          tags{
+            name
+          }
+          genre{
+            persianTittle
+          }
+          artist{
+            id
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+          album{
+            persianTitle
+            englishTitle
+          }
+          artist{
+            persianTitle
+      englishTitle
+    }
+       }
+    }
+    `,
+  });
+};
+
 export const getLastMusicInSite = (limit) => {
   const url = GRAPHQL();
   return axios.post(url, {
@@ -46,6 +88,42 @@ export const getBestMusic = (limit) => {
   return axios.post(url, {
     query: `{
       musics(sort:"view:DESC",limit:${limit}){
+          id
+          persianTitle
+          englishTitle
+          view
+          lyrics
+          musicLength
+          artist{
+            persianTitle
+            englishTitle
+          }
+              cover{
+            url
+          }
+          musicFile{
+            url
+          }
+          album{
+            persianTitle
+            englishTitle
+          }
+          artist{
+            persianTitle
+      englishTitle
+    }
+       }
+    }
+    `,
+  });
+};
+
+export const getSameMusic = (start, limit) => {
+  const url = GRAPHQL();
+
+  return axios.post(url, {
+    query: `{
+      musics(sort:"view:DESC",start:${start} limit:${limit}){
           id
           persianTitle
           englishTitle

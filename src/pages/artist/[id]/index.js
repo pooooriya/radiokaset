@@ -12,69 +12,69 @@ import { NextSeo } from 'next-seo';
 import { v4 as uuidv4 } from 'uuid';
 
 const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
-  const structuredData =
-    getAlbums?.artists[0]?.albums.length > 0
-      ? getAlbums?.artists[0]?.albums?.map((i) => {
-          return {
-            '@context': 'https://schema.org',
-            '@type': 'MusicAlbum',
-            '@id': `${API_URL}/${artistInfo.artist?.id}`,
-            name: `${i?.persianTitle} - ${i?.englishTitle}`,
-            image: `${API_URL}/${i?.cover?.url}`,
-            genre: `${i?.genre?.persianTitle} - ${i?.genre?.englishTitle}`,
-            byArtist: {
-              '@type': 'MusicGroup',
-              name: `${artistInfo.artist?.persianTitle} - ${artistInfo.artist?.englishTitle}`,
-              '@id': `${API_URL}/${artistInfo.artist?.id}`,
-            },
-            albumRelease: {
-              '@type': 'MusicRelease',
-              name: `${i?.persianTitle} - ${i?.englishTitle}`,
-              '@id': `${API_URL}/${i?.id}`,
-            },
-            track: i?.musics?.map((x) => {
-              return {
-                '@type': 'ListItem',
-                position: index,
-                item: {
-                  '@type': 'MusicRecording',
-                  name: `${x?.persianTitle} - ${x?.englishTitle}`,
-                },
-              };
-            }),
-          };
-        })
-      : getMusics?.artists[0].musics?.length > 0 && {
-          '@context': 'https://schema.org',
-          '@type': 'MusicAlbum',
-          '@id': `${API_URL}/${artistInfo.artist?.id}`,
-          name: `Single Tracks - ترک های سینگل`,
-          genre: `${artistInfo?.artist?.genre?.persianTittle}- ${artistInfo?.artist?.genre?.englishTitle}`,
-          byArtist: {
-            '@type': 'MusicGroup',
-            name: `${artistInfo.artist?.persianTitle} - ${artistInfo.artist?.englishTitle}`,
-            '@id': `${API_URL}/${artistInfo.artist?.id}`,
-          },
-          track: getMusics?.artists[0].musics?.map((x) => {
-            return {
-              '@type': 'ListItem',
-              position: index,
-              item: {
-                '@type': 'MusicRecording',
-                name: `${x?.persianTitle} - ${x?.englishTitle}`,
-              },
-            };
-          }),
-        };
+  // const structuredData =
+  //   getAlbums?.artists[0]?.albums.length > 0
+  //     ? getAlbums?.artists[0]?.albums?.map((i) => {
+  //         return {
+  //           '@context': 'https://schema.org',
+  //           '@type': 'MusicAlbum',
+  //           '@id': `${API_URL}/${artistInfo.artist?.id}`,
+  //           name: `${i?.persianTitle} - ${i?.englishTitle}`,
+  //           image: `${API_URL}/${i?.cover?.url}`,
+  //           genre: `${i?.genre?.persianTitle} - ${i?.genre?.englishTitle}`,
+  //           byArtist: {
+  //             '@type': 'MusicGroup',
+  //             name: `${artistInfo.artist?.persianTitle} - ${artistInfo.artist?.englishTitle}`,
+  //             '@id': `${API_URL}/${artistInfo.artist?.id}`,
+  //           },
+  //           albumRelease: {
+  //             '@type': 'MusicRelease',
+  //             name: `${i?.persianTitle} - ${i?.englishTitle}`,
+  //             '@id': `${API_URL}/${i?.id}`,
+  //           },
+  //           track: i?.musics?.map((x) => {
+  //             return {
+  //               '@type': 'ListItem',
+  //               position: index,
+  //               item: {
+  //                 '@type': 'MusicRecording',
+  //                 name: `${x?.persianTitle} - ${x?.englishTitle}`,
+  //               },
+  //             };
+  //           }),
+  //         };
+  //       })
+  //     : getMusics?.artists[0].musics?.length > 0 && {
+  //         '@context': 'https://schema.org',
+  //         '@type': 'MusicAlbum',
+  //         '@id': `${API_URL}/${artistInfo.artist?.id}`,
+  //         name: `Single Tracks - ترک های سینگل`,
+  //         genre: `${artistInfo?.artist?.genre?.persianTittle}- ${artistInfo?.artist?.genre?.englishTitle}`,
+  //         byArtist: {
+  //           '@type': 'MusicGroup',
+  //           name: `${artistInfo.artist?.persianTitle} - ${artistInfo.artist?.englishTitle}`,
+  //           '@id': `${API_URL}/${artistInfo.artist?.id}`,
+  //         },
+  //         track: getMusics?.artists[0].musics?.map((x) => {
+  //           return {
+  //             '@type': 'ListItem',
+  //             position: index,
+  //             item: {
+  //               '@type': 'MusicRecording',
+  //               name: `${x?.persianTitle} - ${x?.englishTitle}`,
+  //             },
+  //           };
+  //         }),
+  //       };
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-      </Head>
+      </Head> */}
       <Layout>
         <NextSeo
           title={`کاستیفای | ${artistInfo?.artist?.persianTitle} | ${artistInfo?.artist?.englishTitle}`}

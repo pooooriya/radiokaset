@@ -1,0 +1,31 @@
+.musicHeader {
+  padding: 0 20px;
+  height: 350px;
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.788), #00000069),
+    url('/cassettify_back.jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 20px;
+
+  @media (max-width: 768px) {
+    height: 100vh;
+    text-align: center;
+    div {
+      h3 {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.musicHeader_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.musicHeader_main {
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}

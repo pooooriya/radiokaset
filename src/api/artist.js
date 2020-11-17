@@ -35,6 +35,24 @@ export const getLastEditedArtist = (limit) => {
   });
 };
 
+export const getSameArtist = (start, limit) => {
+  const url = GRAPHQL();
+  return axios.post(url, {
+    query: `{
+        artists(sort:"updated_at:DESC"
+        ${limit && `limit:${limit}`}
+        ${start && `start:${start}`}){
+           id
+            persianTitle
+            englishTitle
+            cover{
+              url
+            }
+          }
+      }`,
+  });
+};
+
 export const getArtist = (id) => {
   const url = GRAPHQL();
   return axios.post(url, {
