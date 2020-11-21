@@ -1,12 +1,7 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { Col } from 'antd';
 import s from './MusicInfo.scss';
-import {
-  EyeOutlined,
-  PlayCircleOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { PlayCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { hashedID } from '@/root/src/modules/seo';
 import Link from '@/components/Link/Link';
 import Button from '@/components/Button/Button';
 import { appContext } from '@/providers/App';
@@ -69,7 +64,7 @@ const MusicInfo = ({ data }) => {
           پخش کاست
         </Button>
       </div>
-      <Link to={`/artist/${data?.artist?.id}`}>
+      <Link to={`/artist/${hashedID(data?.artist?.id)}`}>
         <Button
           // {...form}
           // disabled={!form.dirty || form.isSubmitting}

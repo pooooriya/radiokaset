@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Affix, Col, Divider, Row } from 'antd';
 import Layout from '@/components/Layout/Layout';
 import MusicSideBar from '@/components/MusicSideBar/MusicSideBar';
+import { dehashedID } from '@/root/src/modules/seo';
 import {
   getMusicById,
   getTopFiveMusicByArtist,
@@ -64,7 +65,7 @@ export async function getServerSideProps({ params }) {
   const randomSelect = Math.floor(Math.random() * 100);
   const random = Math.floor(Math.random() * 20);
   try {
-    music = await getMusicById(params.id);
+    music = await getMusicById(dehashedID(params.id));
     getSame = await getSameMusic(randomSelect, 25);
     getArtist = await getSameArtist(random, 10);
   } catch (e) {

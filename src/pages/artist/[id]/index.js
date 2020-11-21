@@ -6,10 +6,9 @@ import ArtistAnalytics from '@/components/ArtistAnalytics/ArtistAnalytics';
 import { getArtist } from '@/api/artist';
 import { getTopFiveMusicByArtist, getAllMusic } from '@/api/music';
 import { getAlbumsByArtist } from '@/api/album';
-import { API_URL } from '@/root/env';
-import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { v4 as uuidv4 } from 'uuid';
+import { dehashedID } from '@/root/src/modules/seo';
 
 const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
   // const structuredData =
@@ -92,6 +91,7 @@ const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
         />
         {getAlbums?.artists[0]?.albums.map((i, index) => (
           <MusicTable
+            key={index}
             data={i.musics}
             title={`آلبوم ${i.persianTitle} (${i.englishTitle})`}
             album={i}
@@ -108,15 +108,14 @@ export async function getServerSideProps({ params }) {
   let getTopFiveMusic;
   let getAlbums;
   let getMusics;
-
   try {
-    getMusics = await getAllMusic(params.id);
-    getAlbums = await getAlbumsByArtist(params.id);
+    getMusics = await getAllMusic(dehashedID(params.id));
+    getAlbums = await getAlbumsByArtist(dehashedID(params.id));
     getTopFiveMusic = await getTopFiveMusicByArtist(
-      params.id,
+      dehashedID(params.id),
       getAlbums?.data?.data?.artists[0]?.albums?.length > 0 ? 10 : null
     );
-    artistInfo = await getArtist(params.id);
+    artistInfo = await getArtist(dehashedID(params.id));
   } catch (e) {
     console.log(e);
   }

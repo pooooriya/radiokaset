@@ -74,14 +74,14 @@ export const SEOandHashesChanges = (context, params) => {
 
 // eslint-disable-next-line no-unused-vars
 export const hashedID = (id, type = 'cassettify') => {
-  const hashids = new Hashids('', 3);
+  const hashids = new Hashids('', 5);
   const hashedId = hashids.encode(id);
   return hashedId;
 };
 
 // eslint-disable-next-line no-unused-vars
 export const dehashedID = (id, type = 'cassettify') => {
-  const hashids = new Hashids('', 3);
+  const hashids = new Hashids('', 5);
   const dehashedId = hashids.decode(id);
   return dehashedId && dehashedId[0];
 };

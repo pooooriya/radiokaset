@@ -7,6 +7,7 @@ import Flickity from 'react-flickity-component';
 import { appContext } from '../../providers/App';
 import { API_URL } from '@/root/env';
 import Link from '@/components/Link/Link';
+import { hashedID } from '@/root/src/modules/seo';
 
 const Card = ({ title, res, isArtist, subject }) => {
   const audiolist = [];
@@ -91,8 +92,8 @@ const Card = ({ title, res, isArtist, subject }) => {
                 />
               </>
             ))
-          : res?.artists?.map((i) => (
-              <Link to={`/artist/${i?.id}`}>
+          : res?.artists?.map((i, index) => (
+              <Link to={`/artist/${hashedID(i?.id)}`} key={index}>
                 <CardItem
                   persianTitle={i.persianTitle}
                   englishTitle={i.englishTitle}

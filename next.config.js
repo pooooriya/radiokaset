@@ -7,7 +7,6 @@ const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
 
 // Webpack
-// eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -32,8 +31,19 @@ module.exports = withPlugins(
       enabled: process.env.ANALYZE === 'true',
     }),
   ],
-
   {
+    async rewrites() {
+      return [
+        {
+          source: '/sitemap/musics/:page/index.xml',
+          destination: '/api/sitemap/music',
+        },
+        {
+          source: '/sitemap/artists/:page/index.xml',
+          destination: '/api/sitemap/artist',
+        },
+      ];
+    },
     dir: './src',
     distDir: './build',
     env: {},

@@ -9,6 +9,7 @@ import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getMore } from '../../api/artist';
 import { NextSeo } from 'next-seo';
+import { hashedID } from '@/root/src/modules/seo';
 
 const index = ({ artists }) => {
   const [loadmore, setLoadmore] = useState(false);
@@ -54,10 +55,11 @@ const index = ({ artists }) => {
           justify="center"
           align="middle"
         >
-          {data?.map((i) => (
-            <Col xl={3} lg={5} xs={12} sm={8} md={6}>
-              <Link to={`/artist/${i?.id}`}>
+          {data?.map((i, index) => (
+            <Col xl={3} lg={5} xs={12} sm={8} md={6} key={index}>
+              <Link to={`/artist/${hashedID(i?.id)}`}>
                 <ArtistPageCard
+                  key={index}
                   persianTitle={i?.persianTitle}
                   englishTitle={i?.englishTitle}
                   cover={i?.cover}
@@ -71,7 +73,7 @@ const index = ({ artists }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   let artists;
 
   try {
