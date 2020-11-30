@@ -96,9 +96,8 @@ const MasterLayout = (props) => {
           }}
         >
           <Header
-            className="site-layout-background"
+            className="site-layout-background header"
             style={{ padding: 0 }}
-            className="header"
           >
             <div className="header_collapesd">
               <UnorderedListOutlined onClick={onCollapse} />
@@ -106,9 +105,10 @@ const MasterLayout = (props) => {
             <div className="header_handwriter">
               <Link to="/">
                 <ReactImageFallback
-                  fallbackImage="/handwriter.png"
-                  src="/handwrite.png"
+                  fallbackImage="/radioKassetLogo.png"
+                  src="/radioKassetLogo.png"
                   className="headerHandwrite"
+                  alt="رادیو کاست"
                 />
               </Link>
             </div>

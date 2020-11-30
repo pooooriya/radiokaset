@@ -831,7 +831,7 @@ select:-webkit-autofill {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.267);
+    background-color: #131313b0;
     // filter: blur(8px);
     padding: 0 1.5em !important;
     top: 0;
@@ -863,12 +863,15 @@ select:-webkit-autofill {
   }
 
   .headerHandwrite {
-    width: 9em;
+    width: 230px;
     height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @media (max-width: 768px) {
+      width: 170px;
+    }
   }
 
   .ant-divider {
@@ -877,6 +880,7 @@ select:-webkit-autofill {
     align-items: flex-start;
     position: relative;
     margin-bottom: 25px !important;
+
     span {
       color: #fff;
     }

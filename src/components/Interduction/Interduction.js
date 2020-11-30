@@ -9,11 +9,12 @@ import {
 } from '@ant-design/icons';
 import Button from '@/components/Button/Button';
 
-const Interduction = (props) => {
+const Interduction = () => {
   return (
     <Row className={s.cassetteBackground} justify="center" align="middle">
       <Col lg={12} xs={20}>
-        <h1>با کاستیفای بی وقفه به موزیک دلخواهت گوش بده !</h1>
+        <h1>با رادیو کاست ، بی وقفه به موزیک دلخواهت گوش بده !</h1>
+        <h2>دسترسی به بهترین و جدیدترین آهنگ های ایرانی</h2>
         <SearchBox withBoxshadow />
         <h6>مطابق قوانین جمهوری اسلامی ایران</h6>
 
