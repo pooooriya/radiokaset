@@ -169,13 +169,19 @@ const MusicTable = ({ data, title, album, subjects }) => {
       dataIndex: 'playIcon',
       key: 'playIcon',
       render: (text, record, index) => (
-        <Space size="middle">
-          {record.key === currentIndex + 1 && isPlaying ? (
-            <PauseCircleOutlined style={{ fontSize: '25px' }} />
-          ) : (
-            <PlayCircleOutlined style={{ fontSize: '25px' }} />
-          )}
-        </Space>
+        <>
+          <Space size="middle">
+            {record.key === currentIndex + 1 &&
+            isPlaying &&
+            playlist.find(
+              (i) => i?.table === record?.table && i.key + 1 === record?.key
+            ) ? (
+              <PauseCircleOutlined style={{ fontSize: '25px' }} />
+            ) : (
+              <PlayCircleOutlined style={{ fontSize: '25px' }} />
+            )}
+          </Space>
+        </>
       ),
     },
   ];

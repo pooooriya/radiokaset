@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Divider, Row } from 'antd';
+import { Divider } from 'antd';
 import CardItem from './CardItem/CardItem';
 import s from './Card.scss';
 import Flickity from 'react-flickity-component';

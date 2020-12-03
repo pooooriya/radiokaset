@@ -92,8 +92,8 @@ const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
         {getAlbums?.artists[0]?.albums.map((i, index) => (
           <MusicTable
             key={index}
-            data={i.musics}
-            title={`آلبوم ${i.persianTitle} (${i.englishTitle})`}
+            data={i?.musics}
+            title={`آلبوم ${i?.persianTitle} (${i?.englishTitle})`}
             album={i}
             subjects={uuidv4()}
           />

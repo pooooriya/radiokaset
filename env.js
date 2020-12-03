@@ -5,13 +5,13 @@ let adminUrl;
 const env = 'production';
 
 if (env === 'production') {
-  apiUrl = 'https://api.cassettify.ir';
-  siteUrl = 'https://cassettify.ir/';
-  adminUrl = 'https://api.cassettify.com/admin';
+  apiUrl = 'https://api.radiokaset.com';
+  siteUrl = 'https://radiokaset.com/';
+  adminUrl = 'https://api.radiokaset.com/admin';
 } else if (env === 'development') {
-  apiUrl = 'https://api.cassettify.ir';
-  siteUrl = 'https://cassettify.ir/';
-  adminUrl = 'https://api.cassettify.com/admin';
+  apiUrl = 'https://api.radiokaset.com';
+  siteUrl = 'https://radiokaset.com/';
+  adminUrl = 'https://api.radiokaset.com/admin';
 }
 
 // local host:

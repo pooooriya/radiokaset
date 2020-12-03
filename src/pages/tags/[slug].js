@@ -14,7 +14,7 @@ const index = ({ musics, subject, title }) => {
       <Row className="pt-5">
         <Divider orientation="right">{title}</Divider>
         <Col xs={24}>
-          <MusicTable data={musics?.musics} subjects={subject} />
+          <MusicTable data={musics?.musics} subjects={`${subject}-in-table`} />
         </Col>
       </Row>
     </Layout>
