@@ -1,0 +1,76 @@
+.cassetteFooter {
+  border-top: 2px solid #646464;
+  width: 100%;
+  margin-top: 30px;
+  padding: 50px;
+
+  * > h4 {
+    margin: 0 15px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+
+  h6 {
+    text-align: center;
+  }
+
+  h4 {
+    color: #fff;
+    border-bottom: 2px solid #f7f7f7;
+    text-align: center;
+  }
+
+  li {
+    a {
+      color: #fff;
+      transition: all ease 0.2s;
+      &:hover {
+        color: rgba(255, 255, 255, 0.568);
+      }
+    }
+    text-align: center;
+    padding: 8px 0;
+  }
+}
+
+.cassetteFooter_img {
+  width: 300px;
+}
+
+.cassetteFooter_logo {
+  justify-content: start;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    margin-bottom: 25px;
+  }
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 120px;
+  width: 100%;
+  text-align: center;
+  h5 {
+    color: #fff;
+    width: 100%;
+  }
+}
+
+.socials {
+  padding: 0 15px;
+  @media (max-width: 768px) {
+    margin-bottom: 25px;
+  }
+}
+
+.socials_item {
+  color: #fff;
+  svg {
+    font-size: 25px;
+  }
+}

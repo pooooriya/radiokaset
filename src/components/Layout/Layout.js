@@ -18,6 +18,7 @@ import faIR from 'antd/lib/locale-provider/fa_IR';
 import withSizes from 'react-sizes';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useRouter } from 'next/router';
+import Footer from '@/components/Footer/Footer';
 
 const { Header, Sider } = Layout;
 
@@ -47,8 +48,8 @@ const MasterLayout = (props) => {
         >
           <div className="logo-bar">
             <ReactImageFallback
-              src="/logo.svg"
-              fallbackImage="/logo.svg"
+              src="/cassette.svg"
+              fallbackImage="/cassette.svg"
               className="logo"
             />
             {collapse ? (
@@ -105,8 +106,8 @@ const MasterLayout = (props) => {
             <div className="header_handwriter">
               <Link to="/">
                 <ReactImageFallback
-                  fallbackImage="/radioKassetLogo.png"
-                  src="/radioKassetLogo.png"
+                  fallbackImage="/kasetlogo.png"
+                  src="/kasetlogo.png"
                   className="headerHandwrite"
                   alt="رادیو کاست"
                 />
@@ -124,6 +125,7 @@ const MasterLayout = (props) => {
             </div>
           </Header>
           {props.children}
+          <Footer />
         </Layout>
         <BackTop
           visibilityHeight={600}

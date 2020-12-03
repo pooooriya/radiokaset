@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps, data }) {
         return Promise.reject(error);
       }
     );
-    NProgress.configure({ showSpinner: false });
+    NProgress.configure({ showSpinner: true });
     Router.events.on('routeChangeStart', () => NProgress.start());
     Router.events.on('routeChangeComplete', (url) => {
       NProgress.done();
