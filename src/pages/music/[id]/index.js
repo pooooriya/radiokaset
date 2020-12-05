@@ -32,7 +32,7 @@ const index = ({ music, getSame, getArtist }) => {
   return (
     <Layout>
       <NextSeo
-        title={`کاستیفای | دانلود آهنگ ${music?.musics[0]?.persianTitle} ${music?.musics[0]?.artist?.persianTitle}`}
+        title={`رادیو کاست | دانلود آهنگ ${music?.musics[0]?.persianTitle} ${music?.musics[0]?.artist?.persianTitle}`}
         description={`دانلود آهنگ ${music?.musics[0]?.persianTitle} از ${music?.musics[0]?.artist?.persianTitle}
         دانلود آخرین کیفیت آهنگ های ${music?.musics[0]?.artist?.persianTitle},
         متن آهنگ ${music?.musics[0]?.persianTitle} از ${music?.musics[0]?.artist?.persianTitle}

@@ -76,7 +76,7 @@ const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
       </Head> */}
       <Layout>
         <NextSeo
-          title={`کاستیفای | ${artistInfo?.artist?.persianTitle} | ${artistInfo?.artist?.englishTitle}`}
+          title={`رادیو کاست | ${artistInfo?.artist?.persianTitle} | ${artistInfo?.artist?.englishTitle}`}
           description={`دانلود فول آلبوم ${artistInfo?.artist?.persianTitle} و پخش آنلاین آهنگ های ${artistInfo?.artist?.persianTitle} و  بهترین آهنگ های ${artistInfo?.artist?.persianTitle}`}
         />
         <ArtistHeader artistInfo={artistInfo} />

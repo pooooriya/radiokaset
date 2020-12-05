@@ -35,7 +35,7 @@ const index = ({ albums }) => {
   return (
     <Layout>
       <NextSeo
-        title="کاستیفای | آلبوم های خوانندگان"
+        title="رادیو کاست | آلبوم های خوانندگان"
         description="جست و جو در بهترین آلبوم خوانندگان ایرانی و خارجی و پخش آنلاین موزیک "
       />
       <InfiniteScroll
