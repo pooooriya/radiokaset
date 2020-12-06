@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@react-icons/all-files": "^4.1.0",
     "@sentry/browser": "^5.23.0",
     "@tinymce/tinymce-react": "^3.6.1",
     "antd": "^4.6.4",

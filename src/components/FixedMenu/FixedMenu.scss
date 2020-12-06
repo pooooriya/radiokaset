@@ -1,0 +1,68 @@
+.fixedMenu {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 40px;
+  background-color: #000;
+  width: 100%;
+  :global {
+    .ant-menu {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+      flex-direction: row !important;
+      span:first-of-type {
+        margin: 0;
+      }
+      li {
+        width: 25%;
+        margin: 0 !important;
+        height: 100% !important;
+        flex-direction: row;
+        padding: 0 !important;
+        justify-content: center !important;
+        a {
+          height: 100%;
+          color: #f7f7f7;
+          flex-direction: column;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all ease 0.4s;
+
+          &:hover,
+          &:active {
+            background-color: #dd0864;
+          }
+          &:focus {
+            background-color: #aa1354;
+          }
+          svg {
+            font-size: 20px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.active {
+  ul {
+    li {
+      a {
+        background-color: #aa1354;
+      }
+    }
+  }
+}
+
+.icon {
+  font-size: 40px;
+  color: #fff;
+}

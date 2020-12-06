@@ -19,6 +19,7 @@ import withSizes from 'react-sizes';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useRouter } from 'next/router';
 import Footer from '@/components/Footer/Footer';
+import FixedMenu from '@/components/FixedMenu/FixedMenu';
 
 const { Header, Sider } = Layout;
 
@@ -126,11 +127,13 @@ const MasterLayout = (props) => {
           </Header>
           {props.children}
           <Footer />
+          <FixedMenu />
         </Layout>
         <BackTop
           visibilityHeight={600}
           style={{
-            left: `${isTablet ? '50px' : !collapse ? '230px' : '100px'}`,
+            left: `${isTablet ? '30px' : !collapse ? '230px' : '100px'}`,
+            bottom: `${isTablet ? '80px' : 'unset'}`,
             transition: 'all ease .2s',
           }}
         >
