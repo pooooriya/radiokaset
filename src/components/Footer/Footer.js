@@ -27,7 +27,6 @@ const Footer = () => {
     fetch();
   }, []);
 
-  console.log(data);
   return (
     <>
       <Row className={s.cassetteFooter} justify="center">
@@ -131,25 +130,5 @@ const Footer = () => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  let bestest;
-  let lastEditedArtsit;
-  console.log(lastEditedArtsit);
-  try {
-    lastEditedArtsit = await getLastEditedArtist(7);
-    bestest = await getLastMusic(7);
-  } catch (e) {
-    console.log(e);
-  }
-  console.log(lastEditedArtsit);
-
-  return {
-    props: {
-      lastEditedArtsit: lastEditedArtsit?.data?.data || null,
-      bestest: bestest?.data?.data || null,
-    },
-  };
-}
 
 export default Footer;
