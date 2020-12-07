@@ -20,6 +20,8 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useRouter } from 'next/router';
 import Footer from '@/components/Footer/Footer';
 import FixedMenu from '@/components/FixedMenu/FixedMenu';
+import {CgMenu} from 'react-icons/cg';
+import {GoSearch} from 'react-icons/go';
 
 const { Header, Sider } = Layout;
 
@@ -102,27 +104,34 @@ const MasterLayout = (props) => {
             style={{ padding: 0 }}
           >
             <div className="header_collapesd">
-              <UnorderedListOutlined onClick={onCollapse} />
+              <CgMenu onClick={onCollapse}/>
             </div>
             <div className="header_handwriter">
               <Link to="/">
                 <ReactImageFallback
-                  fallbackImage="/kasetlogo.png"
-                  src="/kasetlogo.png"
+                  fallbackImage="/cassette.png"
+                  src="/cassette.png"
                   className="headerHandwrite"
                   alt="رادیو کاست"
                 />
               </Link>
             </div>
             <div className="header_signBox">
-              <AnchorLink
-                href="#boxSearch"
-                offset="50"
-                style={{ color: '#fff' }}
-                // className={s.sidebarHeader__search}
-              >
-                <SearchOutlined rotate={90} />
-              </AnchorLink>
+              <>
+
+              {router.pathname ==='/' ?
+            (  <AnchorLink
+              href="#boxSearch"
+              offset="50"
+              style={{ color: '#fff' }}
+              // className={s.sidebarHeader__search}
+            >
+              <GoSearch rotate={90} />
+            </AnchorLink>)
+              :
+          (<Link to='/search'><GoSearch style={{color:'#f7f7f7'}}/> </Link>)
+        }
+              </>
             </div>
           </Header>
           {props.children}
@@ -133,7 +142,7 @@ const MasterLayout = (props) => {
           visibilityHeight={600}
           style={{
             left: `${isTablet ? '30px' : !collapse ? '230px' : '100px'}`,
-            bottom: `${isTablet ? '80px' : 'unset'}`,
+            bottom: `${isTablet ? '80px' : '75'}`,
             transition: 'all ease .2s',
           }}
         >

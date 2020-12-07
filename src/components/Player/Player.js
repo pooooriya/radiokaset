@@ -29,7 +29,7 @@ const Player = () => {
   };
   return (
     <ReactJkMusicPlayer
-      defaultPosition={{ right: '30px', bottom: '30px' }}
+      defaultPosition={{ right: '30px', bottom: '65px' }}
       audioLists={playlist}
       playIndex={currentIndex}
       onAudioPlay={(audioInfo) => {

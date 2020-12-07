@@ -38,7 +38,7 @@ const Footer = () => {
           />
         </Col>
         <Col lg={4} md={6} sm={12} xs={24}>
-          <h4>رادیو کاست در شبکه های اجتماعی</h4>
+          <h4> شبکه های اجتماعی</h4>
           <Row justify="center" align="middle">
             <Col lg={6} className={s.socials}>
               <div className={s.socials_item}>
