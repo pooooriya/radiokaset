@@ -1,11 +1,14 @@
 .fixedMenu {
-  display: flex;
+  display: none;
   position: fixed;
   bottom: 0;
   right: 0;
   height: 40px;
   background-color: #000;
   width: 100%;
+  @media (max-width: 768px) {
+    display: flex;
+  }
   :global {
     .ant-menu {
       margin: 0;
