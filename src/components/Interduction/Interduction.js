@@ -16,12 +16,10 @@ const Interduction = () => {
         <h1>با رادیو کاست ، بی وقفه به موزیک دلخواهت گوش بده !</h1>
         <h2>دسترسی به بهترین و جدیدترین آهنگ های ایرانی</h2>
         <SearchBox withBoxshadow />
-        <h6>مطابق قوانین جمهوری اسلامی ایران</h6>
-
         <Row justify="center" align="center" className={s.socials}>
           <Col>
             <a
-              href="https://instagram.com/cassettify"
+              href="https://instagram.com/Radio_kaset"
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
@@ -41,7 +39,7 @@ const Interduction = () => {
           </Col>
           <Col>
             <a
-              href="https://t.me/cassettify"
+              href="https://t.me/Radio_kaset"
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
