@@ -43,7 +43,7 @@ const Card = () => {
         </Menu.Item>
         <Menu.Item key="/playlist" style={{ height: '100%' }}>
           <RiPlayListLine />
-          <Link to="/playlist" />
+          <Link to="/playlist"  />
         </Menu.Item>
         <Menu.Item key="/podcast" style={{ height: '100%' }}>
           <FaPodcast />

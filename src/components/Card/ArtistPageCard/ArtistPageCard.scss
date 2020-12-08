@@ -2,6 +2,9 @@
   height: 250px;
   overflow: hidden;
   position: relative;
+  @media (max-width: 768px) {
+    height: 200px;
+  }
   &:hover {
     .artists_cover_overlay {
       opacity: 1;

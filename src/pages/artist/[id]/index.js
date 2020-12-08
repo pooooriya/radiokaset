@@ -85,7 +85,7 @@ const index = ({ artistInfo, getTopFiveMusic, getAlbums, getMusics }) => {
           albumLength={getAlbums?.artists[0]?.albums.length}
         />
         <MusicTable
-          data={getTopFiveMusic.artists[0].musics}
+          data={getTopFiveMusic?.artists[0].musics}
           title="بهترین کاست های آرتیست"
           subjects={uuidv4()}
         />

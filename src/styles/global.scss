@@ -146,6 +146,12 @@ select:-webkit-autofill {
 /*=================== SideBar =================== */
 
 :global {
+  .flickity-button {
+    display: block;
+    @media (max-width: 786px) {
+      display: none;
+    }
+  }
   .px-3 {
     padding: 0 10px;
   }
@@ -874,7 +880,11 @@ select:-webkit-autofill {
     justify-content: center;
     align-items: flex-start;
     position: relative;
-    margin-bottom: 25px !important;
+    margin-bottom: 15px !important;
+
+    @media (max-width: 768px) {
+      margin-bottom: 20px !important;
+    }
 
     span {
       color: #fff;

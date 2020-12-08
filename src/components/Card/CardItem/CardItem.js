@@ -18,7 +18,7 @@ const Card_Item = ({ persianTitle, cover, artist, onClick }) => {
           <PlayCircleOutlined className={s.play_icon} />
         </div>
         <div className={s.artists_cover_info}>
-          <h2>{artist?.persianTitle}</h2>
+          <h3>{artist?.persianTitle}</h3>
           <h4>{persianTitle}</h4>
         </div>
       </div>

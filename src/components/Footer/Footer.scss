@@ -15,7 +15,7 @@
   }
 
   h4 {
-    color: #fff;
+    color: #c90559;
     border-bottom: 2px solid #f7f7f7;
     text-align: center;
   }
@@ -55,6 +55,9 @@
   height: 120px;
   width: 100%;
   text-align: center;
+  @media (max-width: 768px) {
+    padding-bottom: 50px;
+  }
   h5 {
     color: #fff;
     width: 100%;

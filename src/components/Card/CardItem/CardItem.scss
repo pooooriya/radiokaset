@@ -4,6 +4,11 @@
   overflow: hidden;
   position: relative;
   margin: 0 15px;
+
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 200px;
+  }
   &:hover {
     .artists_cover_overlay {
       opacity: 1;
@@ -48,7 +53,7 @@
 
 .artists_cover_info {
   padding-bottom: 10px;
-  h2,
+  h3,
   h4 {
     margin: 0;
     text-align: center;

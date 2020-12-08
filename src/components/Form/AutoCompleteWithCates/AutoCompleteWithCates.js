@@ -8,6 +8,7 @@ import { API_URL } from '@/root/env';
 import Link from '@/components/Link';
 import s from './AutoCompleteWithCates.module.scss';
 import { searchArtist, searchMusic } from '@/root/src/api/music';
+import { hashedID } from '@/modules/seo';
 
 function AutoCompleteWithCates({
   name,
@@ -71,7 +72,7 @@ function AutoCompleteWithCates({
       const dataPreview = searchData.map((item) =>
         renderItem({
           id: item.id,
-          link: `/artist/${item?.artist?.id}`,
+          link: `/music/${hashedID(item?.id)}`,
           image:
             item.cover && item.cover.url
               ? `${API_URL}${item.cover.url}`
@@ -82,14 +83,14 @@ function AutoCompleteWithCates({
       );
 
       optionsData.push({
-        label: renderTitle('کاست ها', '/artists'),
+        label: renderTitle('کاست ها', '/music'),
         options: dataPreview,
       });
     } else {
       const dataPreview = searchData.map((item) =>
         renderItem({
           id: item.id,
-          link: `/artist/${item?.id}`,
+          link: `/artist/${hashedID(item?.id)}`,
           image:
             item.cover && item.cover.url
               ? `${API_URL}${item.cover.url}`
@@ -99,7 +100,7 @@ function AutoCompleteWithCates({
       );
 
       optionsData.push({
-        label: renderTitle('آرتیست ها', '/artists'),
+        label: renderTitle('آرتیست ها', '/artist'),
         options: dataPreview,
       });
     }
