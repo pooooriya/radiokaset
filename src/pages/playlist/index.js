@@ -8,22 +8,22 @@ import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getMoreAlbum, getAlbums } from '@/api/album';
-import { getMorePlaylist, getPlaylists } from '../../api/playlist';
+import { getPlaylistProgram, getMorePlaylistProgram } from '@/api/program';
 
 const index = ({ playlists }) => {
   const [loadmore, setLoadmore] = useState(false);
   const [loading, setloading] = useState(true);
   const [start, setStart] = useState(20);
-  const [data, setData] = useState(playlists?.playlists);
+  const [data, setData] = useState(playlists?.programs);
 
   useEffect(() => {
     if (loadmore) {
       const fetchMore = async () => {
-        await getMorePlaylist(start, 20).then((res) => {
+        await getMorePlaylistProgram(start, 20).then((res) => {
           setLoadmore(false);
           setStart(start + 20);
-          setData([...data, ...res?.data?.data?.playlists]);
-          if (res?.data?.data?.playlists.length < 20) {
+          setData([...data, ...res?.data?.data?.programs]);
+          if (res?.data?.data?.programs?.length < 20) {
             setloading(false);
           }
         });
@@ -66,7 +66,7 @@ export async function getServerSideProps({ params }) {
   let playlists;
 
   try {
-    playlists = await getPlaylists(20);
+    playlists = await getPlaylistProgram(20);
   } catch (e) {
     console.log(e);
   }

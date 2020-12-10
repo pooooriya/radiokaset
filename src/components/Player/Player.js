@@ -4,6 +4,7 @@ import 'react-jinke-music-player/assets/index.module.css';
 import { appContext } from '@/providers/App';
 import { visitMusic } from '@/api/music';
 import { notification } from 'antd';
+import Link from '@/components/Link/Link';
 
 const Player = () => {
   const {
@@ -18,20 +19,62 @@ const Player = () => {
     return await visitMusic(id);
   };
 
+  const customLocale = {
+    playModeText: {
+      order: 'پخش کاست به ترتیب',
+      orderLoop: 'پخش مکرر کاست فعلی',
+      singleLoop: 'این کاست یکبار پخش شود',
+      shufflePlay: 'پخش شانسی کاست ها',
+    },
+    openText: 'بازش کن',
+    closeText: 'بستن',
+    emptyText: 'کاستی برای پخش وجود ندارد',
+    clickToPlayText: 'این کاست رو پلی کن',
+    clickToPauseText: 'متوقف کردن پخش کاست',
+    nextTrackText: 'کاست بعدی را پلی کن',
+    previousTrackText: 'کاست قبلی رو پلی کن',
+    reloadText: 'کاست رو مجدد ریلود کن',
+    volumeText: 'صدای کاست',
+    playListsText: 'پلی لیستی از کاست ها',
+    toggleLyricText: 'تکست کاست ها رو باز کن',
+    toggleMiniModeText: 'تبدیل به حالت مینی',
+    destroyText: 'پلیر را کاملا ببند',
+    downloadText: 'همین کاست رو برایم دانلود کن',
+    lightThemeText: 'پلیر با تم روشن',
+    darkThemeText: 'پلیر با تم تیره',
+    switchThemeText: 'تم پلیر را تغییر بده',
+    removeAudioListsText: 'کاست ها رو حذف کن',
+    emptyLyricText:
+      'اینجا شعری براش ثبت نکردیم برو رو آیکون تکست روی آهنگ کلیک کن اونجا تکستشو برات نوشتیم',
+  };
+
   const options = {
     showReload: false,
-    showLyric: true,
+    showLyric: false,
     autoPlayInitLoadPlayList: true,
     showMiniProcessBar: true,
     quietUpdate: true,
     clearPriorAudioLists: true,
     showMediaSession: true,
+    remember: true,
+    showThemeSwitch: false,
   };
   return (
     <ReactJkMusicPlayer
+      locale={customLocale}
       defaultPosition={{ right: '30px', bottom: '65px' }}
       audioLists={playlist}
       playIndex={currentIndex}
+      renderAudioTitle={(a, b) => (
+        <div className="playerTitle">
+          <Link to="#" className="playerTitle_artist">
+            {a.singer}
+          </Link>
+          <Link to="#" className="playerTitle_song">
+            {a.name}
+          </Link>
+        </div>
+      )}
       onAudioPlay={(audioInfo) => {
         setCurrentIndex(audioInfo?.key);
         setIsPlaying(true);

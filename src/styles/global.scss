@@ -905,4 +905,46 @@ select:-webkit-autofill {
   }
 
   /*=================== End/header =================== */
+
+  // player
+
+  .music-player-panel {
+    background-color: #000 !important;
+  }
+
+  .music-player-controller {
+    color: #ed215d !important;
+  }
+
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .rc-slider-handle,
+  .react-jinke-music-player-main
+    .music-player-panel
+    .panel-content
+    .rc-slider-track {
+    background-color: #ed215d !important;
+  }
+
+  .react-jinke-music-player-main svg:active,
+  .react-jinke-music-player-main svg:hover {
+    color: #ed215d !important;
+  }
+
+  .react-jinke-music-player
+    .music-player-controller
+    .music-player-controller-setting {
+    background-color: #ed215eab !important;
+  }
+  .playerTitle {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .playerTitle_artist {
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
 }

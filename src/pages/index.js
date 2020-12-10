@@ -29,7 +29,7 @@ const index = ({
         subject="latest-music-in-cassettify"
       />
       <Card title="آرتیست های بروز شده کاست" res={lastEditedArtsit} isArtist />
-      <Card title="جدیدترین آرتیست های کاست" res={lastArtistAdded} isArtist />
+      {/* <Card title="جدیدترین آرتیست های کاست" res={lastArtistAdded} isArtist /> */}
       {/* <Card title="آخرین کاست ها" res={genres} /> */}
     </Layout>
   );

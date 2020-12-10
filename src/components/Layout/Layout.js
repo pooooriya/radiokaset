@@ -20,9 +20,13 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { useRouter } from 'next/router';
 import Footer from '@/components/Footer/Footer';
 import FixedMenu from '@/components/FixedMenu/FixedMenu';
-import {CgMenu} from 'react-icons/cg';
-import {GoSearch} from 'react-icons/go';
-
+import { CgMenu } from 'react-icons/cg';
+import { GoSearch } from 'react-icons/go';
+import { SiGoogleplay } from 'react-icons/si';
+import { RiPlayListLine } from 'react-icons/ri';
+import { FaPodcast } from 'react-icons/fa';
+import { IoIosAlbums } from 'react-icons/io';
+import { RiUserVoiceFill } from 'react-icons/ri';
 const { Header, Sider } = Layout;
 
 const MasterLayout = (props) => {
@@ -75,17 +79,29 @@ const MasterLayout = (props) => {
             defaultSelectedKeys={['/']}
             selectedKeys={[router?.pathname]}
           >
-            <Menu.Item key="/" icon={<CustomerServiceOutlined />}>
+            <Menu.Item key="/" icon={<SiGoogleplay className="anticon" />}>
               <Link to="/">کاست</Link>
             </Menu.Item>
             {/* <Menu.Item key="2" icon={<SearchOutlined />}>
               <Link to="/search">جست و جو</Link>
             </Menu.Item> */}
-            <Menu.Item key="/artist" icon={<UserOutlined />}>
-              <Link to="/artist"> هنرمندان</Link>
+            <Menu.Item
+              key="/artist"
+              icon={<RiUserVoiceFill className="anticon" />}
+            >
+              <Link to="/artist">خوانندگان</Link>
             </Menu.Item>
-            <Menu.Item key="/album" icon={<CaretRightOutlined />}>
-              <Link to="/album">آلبوم</Link>
+            <Menu.Item
+              key="/playlist"
+              icon={<RiPlayListLine className="anticon" />}
+            >
+              <Link to="/playlist">پلی لیست ها</Link>
+            </Menu.Item>
+            <Menu.Item key="/podcast" icon={<FaPodcast className="anticon" />}>
+              <Link to="/podcast">پادکست ها</Link>
+            </Menu.Item>
+            <Menu.Item key="/album" icon={<IoIosAlbums className="anticon" />}>
+              <Link to="/album">آلبوم خوانندگان</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -104,7 +120,7 @@ const MasterLayout = (props) => {
             style={{ padding: 0 }}
           >
             <div className="header_collapesd">
-              <CgMenu onClick={onCollapse}/>
+              <CgMenu onClick={onCollapse} />
             </div>
             <div className="header_handwriter">
               <Link to="/">
@@ -118,19 +134,20 @@ const MasterLayout = (props) => {
             </div>
             <div className="header_signBox">
               <>
-
-              {router.pathname ==='/' ?
-            (  <AnchorLink
-              href="#boxSearch"
-              offset="50"
-              style={{ color: '#fff' }}
-              // className={s.sidebarHeader__search}
-            >
-              <GoSearch rotate={90} />
-            </AnchorLink>)
-              :
-          (<Link to='/search'><GoSearch style={{color:'#f7f7f7'}}/> </Link>)
-        }
+                {router.pathname === '/' ? (
+                  <AnchorLink
+                    href="#boxSearch"
+                    offset="50"
+                    style={{ color: '#fff' }}
+                    // className={s.sidebarHeader__search}
+                  >
+                    <GoSearch rotate={90} />
+                  </AnchorLink>
+                ) : (
+                  <Link to="/search">
+                    <GoSearch style={{ color: '#f7f7f7' }} />{' '}
+                  </Link>
+                )}
               </>
             </div>
           </Header>

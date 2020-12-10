@@ -1,27 +1,26 @@
-import React, { useEffect, useState, memo, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState, memo } from 'react';
 import Layout from '@/components/Layout/Layout';
 import InfiniteScroll from 'react-infinite-scroller';
 import ArtistPageCard from '../../components/Card/ArtistPageCard/ArtistPageCard';
 import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { getPodcastMusics, getMorePodcast } from '@/api/music';
+import { getMorePodcastProgram, getPodcastProgram } from '@/api/program';
 
 const index = ({ podcasts }) => {
   const [loadmore, setLoadmore] = useState(false);
   const [loading, setloading] = useState(true);
   const [start, setStart] = useState(20);
-  const [data, setData] = useState(podcasts?.musics);
+  const [data, setData] = useState(podcasts?.programs);
 
   useEffect(() => {
     if (loadmore) {
       const fetchMore = async () => {
-        await getMorePodcast(start, 20).then((res) => {
+        await getMorePodcastProgram(start, 20).then((res) => {
           setLoadmore(false);
           setStart(start + 20);
-          setData([...data, ...res?.data?.data?.musics]);
-          if (res?.data?.data?.musics.length < 20) {
+          setData([...data, ...res?.data?.data?.programs]);
+          if (res?.data?.data?.programs?.length < 20) {
             setloading(false);
           }
         });
@@ -64,7 +63,8 @@ export async function getServerSideProps({ params }) {
   let podcasts;
 
   try {
-    podcasts = await getPodcastMusics(20);
+    podcasts = await getPodcastProgram(20);
+    console.log(podcasts);
   } catch (e) {
     console.log(e);
   }
