@@ -45,8 +45,8 @@ const index = ({ playlists }) => {
         }
       >
         <Row className="pt-5" gutter={[24, 24]} justify="center" align="middle">
-          {data?.map((i) => (
-            <Col xl={3} lg={5} xs={12} sm={8} md={6}>
+          {data?.map((i, index) => (
+            <Col xl={3} lg={5} xs={12} sm={8} md={6} key={index}>
               <Link to={`/albums/${i?.id}`}>
                 <ArtistPageCard
                   persianTitle={i?.persianTitle}
