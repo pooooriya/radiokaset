@@ -17,6 +17,7 @@ export const getEpisodeByProgram = (id) => {
           music(sort:"published_at:DESC"){
             id
             persianTitle
+            musicLength
             englishTitle
             lyrics
             cover{
