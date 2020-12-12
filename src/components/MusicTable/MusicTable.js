@@ -11,7 +11,7 @@ import { appContext } from '@/providers/App';
 import { API_URL } from '@/root/env';
 import ReactImageFallback from 'react-image-fallback';
 
-const MusicTable = ({ data, title, album, subjects }) => {
+const MusicTable = ({ data, title, album, subjects, ispodcast }) => {
   const dataSource = [];
   let audiolist = [];
   const [expandedRowKeys, setexpandedRowKeys] = useState([]);
@@ -22,6 +22,8 @@ const MusicTable = ({ data, title, album, subjects }) => {
     isPlaying,
     playlist,
   } = useContext(appContext);
+
+  console.log(data, 'data');
 
   const playingMusic = async (record, rowIndex) => {
     if (audiolist && audiolist.length === 0 && !isPlaying) {
@@ -126,7 +128,7 @@ const MusicTable = ({ data, title, album, subjects }) => {
       render: (text, record) => (
         <div className={s.musicInfo}>
           <h4>{record?.musicTitle}</h4>
-          <h5>{record?.artist}</h5>
+          <h5>{ispodcast ? null : record?.artist}</h5>
         </div>
       ),
     },
@@ -192,7 +194,7 @@ const MusicTable = ({ data, title, album, subjects }) => {
           {title}
         </Divider>
       )}
-      <Col lg={20} xs={24}>
+      <Col lg={ispodcast ? 24 : 20} xs={24}>
         {album && (
           <Row gutter={[24, 24]} className={s.album} justify="space-around">
             <Col flex="250px">

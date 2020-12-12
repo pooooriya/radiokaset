@@ -5,7 +5,7 @@ import s from './MusicHeader.scss';
 import CardItem from '@/components/Card/CardItem/CardItem';
 import MusicInfo from '@/components/MusicPage/MusicInfo';
 
-const musicHeader = ({ music }) => {
+const musicHeader = ({ music, ispodcast }) => {
   return (
     <Row className={s.musicHeader} align="bottom">
       <Col xs={24}>
@@ -14,7 +14,8 @@ const musicHeader = ({ music }) => {
             <CardItem
               cover={music?.cover}
               persianTitle={music?.persianTitle}
-              artist={music?.artist}
+              artist={ispodcast ? music : music?.artist}
+              ispodcast
             />
           </Col>
           <Col lg={14} xs={0} className={s.musicHeader_info}>

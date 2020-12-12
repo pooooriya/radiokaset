@@ -29,17 +29,17 @@ const Player = () => {
     openText: 'بازش کن',
     closeText: 'بستن',
     emptyText: 'کاستی برای پخش وجود ندارد',
-    clickToPlayText: 'این کاست رو پلی کن',
+    clickToPlayText: 'پلی کردن کاست',
     clickToPauseText: 'متوقف کردن پخش کاست',
-    nextTrackText: 'کاست بعدی را پلی کن',
-    previousTrackText: 'کاست قبلی رو پلی کن',
+    nextTrackText: 'بزن کاست بعدی',
+    previousTrackText: 'بزن کاست قبلی',
     reloadText: 'کاست رو مجدد ریلود کن',
     volumeText: 'صدای کاست',
     playListsText: 'پلی لیستی از کاست ها',
     toggleLyricText: 'تکست کاست ها رو باز کن',
     toggleMiniModeText: 'تبدیل به حالت مینی',
     destroyText: 'پلیر را کاملا ببند',
-    downloadText: 'همین کاست رو برایم دانلود کن',
+    downloadText: 'دانلود کاست',
     lightThemeText: 'پلیر با تم روشن',
     darkThemeText: 'پلیر با تم تیره',
     switchThemeText: 'تم پلیر را تغییر بده',
@@ -49,15 +49,15 @@ const Player = () => {
   };
 
   const options = {
-    showReload: false,
+    showReload: true,
     showLyric: false,
     autoPlayInitLoadPlayList: true,
     showMiniProcessBar: true,
     quietUpdate: true,
     clearPriorAudioLists: true,
     showMediaSession: true,
-    remember: true,
     showThemeSwitch: false,
+    autoPlay: true,
   };
   return (
     <ReactJkMusicPlayer

@@ -1,0 +1,31 @@
+.podcast_main {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.podcast_main__cover {
+  margin: 0 auto;
+  width: 120px;
+}
+
+.podcast_detail {
+  h1,
+  h2 {
+    color: #f7f7f7;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  h2 {
+    font-size: 14px;
+    padding: 0 25px;
+  }
+}
+
+.dvider {
+  display: flex;
+  align-items: center;
+}

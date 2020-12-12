@@ -6,6 +6,7 @@ import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getMorePodcastProgram, getPodcastProgram } from '@/api/program';
+import { hashedID } from '../../modules/seo';
 
 const index = ({ podcasts }) => {
   const [loadmore, setLoadmore] = useState(false);
@@ -42,9 +43,9 @@ const index = ({ podcasts }) => {
         }
       >
         <Row className="pt-5" gutter={[24, 24]} justify="center" align="middle">
-          {data?.map((i) => (
-            <Col xl={3} lg={5} xs={12} sm={8} md={6}>
-              <Link to={`/albums/${i?.id}`}>
+          {data?.map((i, index) => (
+            <Col xl={3} lg={5} xs={12} sm={8} md={6} key={index}>
+              <Link to={`/podcast/${hashedID(i?.id)}`}>
                 <ArtistPageCard
                   persianTitle={i?.persianTitle}
                   englishTitle={i?.englishTitle}
@@ -59,7 +60,7 @@ const index = ({ podcasts }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps() {
   let podcasts;
 
   try {
