@@ -109,7 +109,9 @@ const Footer = () => {
                 index <= 7 && (
                   <li>
                     <Link to={`/music/${hashedID(i.id)}`}>
-                      {`دانلود آهنگ  ${i.persianTitle} ${i?.artist?.persianTitle}`}
+                      {`دانلود آهنگ  ${i.persianTitle} ${
+                        i && i.artist ? i?.artist.persianTitle : ''
+                      }`}
                     </Link>
                   </li>
                 )
