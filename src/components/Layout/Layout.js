@@ -1,12 +1,6 @@
 import { Layout, Menu, ConfigProvider, BackTop } from 'antd';
 import Link from '@/components/Link/Link';
 import {
-  UserOutlined,
-  SearchOutlined,
-  CustomerServiceOutlined,
-  CaretRightOutlined,
-  LeftOutlined,
-  UnorderedListOutlined,
   UpOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,

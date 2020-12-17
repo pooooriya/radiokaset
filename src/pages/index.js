@@ -7,13 +7,7 @@ import { getGenres } from '@/api/genre';
 import { NextSeo } from 'next-seo';
 import Interduction from '@/components/Interduction/Interduction';
 
-const index = ({
-  newest,
-  bestest,
-  newinsite,
-  lastArtistAdded,
-  lastEditedArtsit,
-}) => {
+const index = ({ newest, bestest, newinsite, lastEditedArtsit }) => {
   return (
     <Layout>
       <NextSeo
