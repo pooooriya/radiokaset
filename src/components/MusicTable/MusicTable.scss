@@ -79,3 +79,10 @@
 tr {
   cursor: pointer;
 }
+
+:global {
+  .ant-table-cell {
+    padding: 11px !important;
+    border-bottom: 1px solid #f7f7f754 !important;
+  }
+}

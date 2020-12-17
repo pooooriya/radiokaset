@@ -1,14 +1,12 @@
-import React, { useEffect, useState, memo, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState, memo } from 'react';
 import Layout from '@/components/Layout/Layout';
-import { getLastArtistAdded } from '@/api/artist';
 import InfiniteScroll from 'react-infinite-scroller';
 import ArtistPageCard from '../../components/Card/ArtistPageCard/ArtistPageCard';
 import Link from '@/components/Link/Link';
 import { Col, Row } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { getMoreAlbum, getAlbums } from '@/api/album';
 import { getPlaylistProgram, getMorePlaylistProgram } from '@/api/program';
+import { hashedID } from '../../modules/seo';
 
 const index = ({ playlists }) => {
   const [loadmore, setLoadmore] = useState(false);
@@ -47,7 +45,7 @@ const index = ({ playlists }) => {
         <Row className="pt-5" gutter={[24, 24]} justify="center" align="middle">
           {data?.map((i, index) => (
             <Col xl={3} lg={5} xs={12} sm={8} md={6} key={index}>
-              <Link to={`/albums/${i?.id}`}>
+              <Link to={`/playlist/${hashedID(i?.id)}`}>
                 <ArtistPageCard
                   persianTitle={i?.persianTitle}
                   englishTitle={i?.englishTitle}

@@ -32,7 +32,11 @@ const MasterLayout = (props) => {
   };
   return (
     <ConfigProvider locale={faIR} direction="rtl">
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout
+        style={{
+          minHeight: '100vh',
+        }}
+      >
         <Sider
           collapsible
           collapsed={collapse}

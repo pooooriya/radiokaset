@@ -56,6 +56,36 @@ export const getPlaylistProgram = (limit) => {
   });
 };
 
+export const getAPlaylistProgram = (id) => {
+  const url = GRAPHQL();
+  return axios.post(url, {
+    query: `{
+          programs(sort:"published_at:DESC",
+          ,where:{id:${id},type:"playlist"}){
+            id
+            persianTitle
+            englishTitle
+            cover{
+              url
+            }
+            music(sort:"published_at:DESC"){
+              id
+              persianTitle
+              englishTitle
+           musicFile{
+            url
+          }
+              musicLength
+              cover{
+                url
+              }
+           
+            }
+          }
+        }`,
+  });
+};
+
 export const getMorePlaylistProgram = (start, limit) => {
   const url = GRAPHQL();
   return axios.post(url, {

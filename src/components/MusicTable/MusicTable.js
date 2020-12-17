@@ -23,8 +23,6 @@ const MusicTable = ({ data, title, album, subjects, ispodcast }) => {
     playlist,
   } = useContext(appContext);
 
-  console.log(data, 'data');
-
   const playingMusic = async (record, rowIndex) => {
     if (audiolist && audiolist.length === 0 && !isPlaying) {
       await data?.map((i, index) => {
@@ -132,13 +130,13 @@ const MusicTable = ({ data, title, album, subjects, ispodcast }) => {
         </div>
       ),
     },
-    {
-      title: 'آلبوم',
-      dataIndex: 'album',
-      key: 'album',
-      align: 'center',
-      responsive: ['sm'],
-    },
+    // {
+    //   title: 'آلبوم',
+    //   dataIndex: 'album',
+    //   key: 'album',
+    //   align: 'center',
+    //   responsive: ['sm'],
+    // },
     {
       title: 'زمان',
       dataIndex: 'musicLength',
